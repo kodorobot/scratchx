@@ -106,6 +106,10 @@
         send("/httpPOST/" + url);
 	}
 	
+	ext.httpGET = function(url){
+        send("/httpGET/" + url);
+	}
+	
     ext.voicedata = function(){
         return sensor_data["voicedata"];
 	}
