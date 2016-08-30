@@ -69,6 +69,18 @@
 	ext.set_servo_position = function(pin, angle){
 		send("/set_servo_position/" + pin + "/" + angle);
 	}
+	
+	ext.digital_read = function(pin){
+		var value = 0;
+		eval('value=sensor_data.digital_read/' + pin);
+		return value;
+	}
+	
+	ext.analog_read = function(pin){
+		var value = 0;
+		eval('value=sensor_data.analog_read/' + pin);
+		return value;
+	}
 		
     function send(cmd) {
         connection.send(cmd);
@@ -86,7 +98,6 @@
             console.log(e.data);
             var sensor = e.data.split("\n");
 			for(var i = 0;i < sensor.length;i++) sensor_data[sensor[i].split(" ")[0]] = sensor[i].split(" ")[1];
-			console.log(sensor_data);
         };
         connection.onerror = function (e) {
             isConnected = false;
