@@ -52,6 +52,7 @@
 
     var descriptor = {
 		blocks: [
+			[' ', '連接 Transformer', 'connect'],
 			[" ", "%m.pin_state : 數位腳位 %n 為 %m.digital_pin_mode", "digital_pin_mode", "啟用", "號碼", "輸入"],
 			[" ", "%m.pin_state : 類比腳位(A) %n 為 輸入", "analog_pin_mode", "啟用", "號碼"],
 			["", "數位輸出: 設定腳位 %n 為 %m.high_low", "digital_write", "號碼", 0],
