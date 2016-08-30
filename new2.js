@@ -23,26 +23,25 @@
 
   var descriptor = {
     blocks: [
-        [" ", "%m.pin_state : ¼Æ¦ì¸}¦ì %n ¬° %m.digital_pin_mode", "digital_pin_mode", "±Ò¥Î", "¸¹½X", "¿é¤J"],
-		[" ", "%m.pin_state : Ãş¤ñ¸}¦ì(A) %n ¬° ¿é¤J", "analog_pin_mode", "±Ò¥Î", "¸¹½X"],
-		["", "¼Æ¦ì¿é¥X: ³]©w¸}¦ì %n ¬° %m.high_low", "digital_write", "¸¹½X", 0],
-		["", "¼ÒÀÀÃş¤ñ¿é¥X(PWM): ³]©w¸}¦ì %n ªº­È¬°  %n", "analog_write", "¸¹½X", "¼Æ¶q­È"],
-		["", "¦b¸}¦ì %n ¼½©ñ­µ½Õ, ÀW²v¬°: %n Hz, ®É¶¡¬°: %n ms", "play_tone", "¸¹½X", 1000, 500],
-		["", "Ãö³¬¸}¦ì %n ªº­µ½Õ", "tone_off", "¸¹½X"],
-		["", "³]©w²Ä %n ¸}¦ì¬°¦øªA¾÷¿é¥X Âà°Ê¨¤«×¬° %n", "set_servo_position", "¸¹½X", 90],
-		["r", "Åª¨ú¼Æ¦ì¸}¦ì %n ªº­È", "digital_read", "¸¹½X"],
-		["r", "Åª¨úÃş¤ñ¸}¦ì(A) %n ªº­È", "analog_read", "¸¹½X"],
-		["", "°£¿ù¤u¨ã %m.off_on", "debugger", "Ãö"]
+        [" ", "%m.pin_state : æ•¸ä½è…³ä½ %n ç‚º %m.digital_pin_mode", "digital_pin_mode", "å•Ÿç”¨", "è™Ÿç¢¼", "è¼¸å…¥"],
+		[" ", "%m.pin_state : é¡æ¯”è…³ä½(A) %n ç‚º è¼¸å…¥", "analog_pin_mode", "å•Ÿç”¨", "è™Ÿç¢¼"],
+		["", "æ•¸ä½è¼¸å‡º: è¨­å®šè…³ä½ %n ç‚º %m.high_low", "digital_write", "è™Ÿç¢¼", 0],
+		["", "æ¨¡æ“¬é¡æ¯”è¼¸å‡º(PWM): è¨­å®šè…³ä½ %n çš„å€¼ç‚º  %n", "analog_write", "è™Ÿç¢¼", "æ•¸é‡å€¼"],
+		["", "åœ¨è…³ä½ %n æ’­æ”¾éŸ³èª¿, é »ç‡ç‚º: %n Hz, æ™‚é–“ç‚º: %n ms", "play_tone", "è™Ÿç¢¼", 1000, 500],
+		["", "é—œé–‰è…³ä½ %n çš„éŸ³èª¿", "tone_off", "è™Ÿç¢¼"],
+		["", "è¨­å®šç¬¬ %n è…³ä½ç‚ºä¼ºæœæ©Ÿè¼¸å‡º è½‰å‹•è§’åº¦ç‚º %n", "set_servo_position", "è™Ÿç¢¼", 90],
+		["r", "è®€å–æ•¸ä½è…³ä½ %n çš„å€¼", "digital_read", "è™Ÿç¢¼"],
+		["r", "è®€å–é¡æ¯”è…³ä½(A) %n çš„å€¼", "analog_read", "è™Ÿç¢¼"],
     ],
     menus: {
-      off_on: ["Ãö", "¶}"],
-	pin_state: ["±Ò¥Î", "°±¥Î"],
-	digital_pin_mode: ["¿é¤J", "¿é¥X", "PWM", "¦øªA¾÷", "­µ½Õ", "¶W­µªi"],
-	high_low: ["0", "1"]
+      pin_state: ['å•Ÿç”¨', 'åœç”¨'],
+      digital_pin_mode: ['è¼¸å…¥', 'è¼¸å‡º', 'PWM', 'ä¼ºæœæ©Ÿ', 'éŸ³èª¿'],
+	  high_low: ["0", "1"]
     },
-    url: 'http://khanning.github.io/scratch-isstracker-extension'
+    url: 'https://kodorobot.github.io/scratchx/'
   };
 
   ScratchExtensions.register('S2Aplus', descriptor, ext);
+
 
 })({});
