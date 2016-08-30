@@ -106,7 +106,7 @@
         send("/httpPOST/" + url);
 	}
 	
-	ext.httpGET = function(url){
+    ext.httpGET = function(url){
         send("/httpGET/" + url);
 	}
 	
