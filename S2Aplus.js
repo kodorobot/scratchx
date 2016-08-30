@@ -113,7 +113,6 @@
 	}
 	
     ext.voicedata = function(){
-		console.log(decodeURI(sensor_data["voicedata"]));
         return decodeURI(sensor_data["voicedata"]);
 	}
 	
