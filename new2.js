@@ -79,6 +79,7 @@
 	ext.analog_read = function(pin){
 		var value = 0;
 		eval('value=sensor_data.analog_read/' + pin);
+		console.log(value);
 		return value;
 	}
 		
@@ -95,7 +96,7 @@
             isConnected = false;
         };
         connection.onmessage = function (e) {
-            console.log(e.data);
+            //console.log(e.data);
             var sensor = e.data.split("\n");
 			for(var i = 0;i < sensor.length;i++) sensor_data[sensor[i].split(" ")[0]] = sensor[i].split(" ")[1];
         };
