@@ -87,7 +87,6 @@
                 return;
 
             var jsonObj = JSON.parse(e.data.substring(0, e.data.length - 1));
-			console.log(jsonObj);
 
         };
         connection.onerror = function (e) {
