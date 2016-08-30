@@ -86,7 +86,7 @@
             console.log(e.data);
             var sensor = e.data.split("\n");
 			for(var i = 0;i < sensor.length;i++) sensor_data[sensor[i].split(" ")[0]] = sensor[i].split(" ")[1];
-			console.log(e.sensor_data);
+			console.log(sensor_data);
         };
         connection.onerror = function (e) {
             isConnected = false;
