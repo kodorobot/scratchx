@@ -201,7 +201,7 @@
 			["w", "analog %m.analogOutPin value %n", "analogOutPin", "9", 255],
 			["w", "motor  %m.MotorPin off", "motoroff", "8"],
 			["w", "motor  %m.MotorPin direction %m.MotorDirection", "MotorDirection", "8", "clockwise"],
-			["w", "motor  %m.MotorPin angle %n", "motorangle", "8", 180]
+			["w", "motor  %m.MotorPin angle %n", "motorangle", "8", 180],
 			["r", "virtual sensor s0",  "s0"],
             ["r", "virtual sensor s1",  "s1"],
             ["w", "向ip: %s 傳送變數 %s 值 %s", "sensor_update_scratch", "127.0.0.1:50209", "s0", 0],
