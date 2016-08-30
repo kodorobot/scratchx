@@ -30,13 +30,6 @@
     }
 	
     ext.digital_pin_mode = function (able, pin, mode) {
-        if(able == "啟用") able = "%E5%95%9F%E7%94%A8";
-        else if(able == "停用") able = "%E5%81%9C%E7%94%A8";
-		
-        if(mode == "輸入") mode = "%E8%BC%B8%E5%85%A5";
-        else if(mode == "輸出") mode = "%E8%BC%B8%E5%87%BA";
-        else if(mode == "伺服機") mode = "%E4%BC%BA%E6%9C%8D%E6%A9%9F";
-        else if(mode == "音調") mode = "%E9%9F%B3%E8%AA%BF";
 
         send("digital_pin_mode/" + able + "/" + pin + "/" + mode);
 	}
