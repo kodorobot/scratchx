@@ -38,7 +38,7 @@
         else if(mode == "伺服機") mode = "%E4%BC%BA%E6%9C%8D%E6%A9%9F";
         else if(mode == "音調") mode = "%E9%9F%B3%E8%AA%BF";
 
-        send("digital_pin_mode/" + able + "/" + pin + "/" + mode);
+        send("/digital_pin_mode/" + able + "/" + pin + "/" + mode);
 	}
 		
     function send(cmd) {
