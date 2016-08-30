@@ -103,10 +103,12 @@
 	}
 	
     ext.httpPOST = function(url){
+        url = replaceAll(url,"/","%2F")
         send("/httpPOST/" + url);
 	}
 	
     ext.httpGET = function(url){
+        url = replaceAll(url,"/","%2F")
         send("/httpGET/" + url);
 	}
 	
@@ -155,6 +157,11 @@
             isConnected = false;
         };
     }
+	
+    function replaceAll(str, find, replace) {
+        while(str.search(find) != -1) str = str.replace(find, replace);
+    return str;
+}
 
     var descriptor = {
         blocks: [
