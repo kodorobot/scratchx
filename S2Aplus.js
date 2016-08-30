@@ -46,88 +46,88 @@
         if(able == "啟用") able = "%E5%95%9F%E7%94%A8";
         else if(able == "停用") able = "%E5%81%9C%E7%94%A8";
 		
-		send("/analog_pin_mode/" + able + "/" + pin);
+        send("/analog_pin_mode/" + able + "/" + pin);
 		
 	}
 	
-	ext.digital_write = function(pin, value){
-		send("/digital_write/" + pin + "/" + value);
+    ext.digital_write = function(pin, value){
+        send("/digital_write/" + pin + "/" + value);
 	}
 	
-	ext.analog_write = function(pin,value){
-		send("/analog_write/" + pin + "/" + value);
+    ext.analog_write = function(pin,value){
+        send("/analog_write/" + pin + "/" + value);
 	}
 	
-	ext.play_tone = function(pin, frequency, time){
-		send("/play_tone/" + pin + "/" + frequency + "/" + time);
+    ext.play_tone = function(pin, frequency, time){
+        send("/play_tone/" + pin + "/" + frequency + "/" + time);
 	}
 	
-	ext.tone_off = function(pin){
-		send("/tone_off/" + pin);
+    ext.tone_off = function(pin){
+        send("/tone_off/" + pin);
 	}
 	
-	ext.set_servo_position = function(pin, angle){
-		send("/set_servo_position/" + pin + "/" + angle);
+    ext.set_servo_position = function(pin, angle){
+        send("/set_servo_position/" + pin + "/" + angle);
 	}
 	
-	ext.digital_read = function(pin){
-		var pin = "digital_read/" + pin;
-		var value = sensor_data[pin];
-		return value;
+    ext.digital_read = function(pin){
+        var pin = "digital_read/" + pin;
+        var value = sensor_data[pin];
+        return value;
 	}
 	
-	ext.analog_read = function(pin){
-		var pin = "analog_read/" + pin;
-		var value = sensor_data[pin];
-		return value;
+    ext.analog_read = function(pin){
+        var pin = "analog_read/" + pin;
+        var value = sensor_data[pin];
+        return value;
 	}
 	
-	ext.s0 = function(){
-		return sensor_data["s0"];
+    ext.s0 = function(){
+        return sensor_data["s0"];
 	}
 	
-	ext.s1 = function(){
-		return sensor_data["s1"];
+    ext.s1 = function(){
+        return sensor_data["s1"];
 	}
 	
-	ext.sensor_update_scratch = function(ip, key, value){
-		send("/sensor_update_scratch/" + 0 + "/" + ip + "/" + key + "/" + value);
+    ext.sensor_update_scratch = function(ip, key, value){
+        send("/sensor_update_scratch/" + 0 + "/" + ip + "/" + key + "/" + value);
 	}
 	
-	ext.sensor_update = function(key, value){
-		send("/sensor_update/" + 0 + "/" + key + "/" + value);
+    ext.sensor_update = function(key, value){
+        send("/sensor_update/" + 0 + "/" + key + "/" + value);
 	}
 	
-	ext.HTTPvalue = function(){
-		return sensor_data["HTTPvalue"];
+    ext.HTTPvalue = function(){
+        return sensor_data["HTTPvalue"];
 	}
 	
-	ext.httpPOST = function(url){
-		send("/httpPOST/" + url);
+    ext.httpPOST = function(url){
+        send("/httpPOST/" + url);
 	}
 	
-	ext.voicedata = function(){
-		return sensor_data["voicedata"];
+    ext.voicedata = function(){
+        return sensor_data["voicedata"];
 	}
 	
-	ext.record = function(){
-		send("/record");
+    ext.record = function(){
+        send("/record");
 	}
 	
-	ext.textovoice_tw = function(content){
-		send("/textovoice_tw/" + content);
+    ext.textovoice_tw = function(content){
+        send("/textovoice_tw/" + content);
 	}
 	
-	ext.textovoice_en = function(content){
-		send("/textovoice_en/" + content);
+    ext.textovoice_en = function(content){
+        send("/textovoice_en/" + content);
 	}
 	
-	ext.voiceSpeed = function(value){
-		send("/voiceSpeed/" + value);
+    ext.voiceSpeed = function(value){
+        send("/voiceSpeed/" + value);
 	}
 	
-	ext.voiceVolume = function(value){
-		send("/voiceVolume/" + value);
+    ext.voiceVolume = function(value){
+        send("/voiceVolume/" + value);
 	}
 		
     function send(cmd) {
@@ -164,26 +164,26 @@
             ["", "設定第 %n 腳位為伺服機輸出 轉動角度為 %n", "set_servo_position", "號碼", 90],
             ["r", "讀取數位腳位 %n 的值", "digital_read", "號碼"],
             ["r", "讀取類比腳位(A) %n 的值", "analog_read", "號碼"],
-			["r", "virtual sensor s0",  "s0"],
-			["r", "virtual sensor s1",  "s1"],
-			["w", "向ip: %s 傳送變數 %s 值 %s", "sensor_update_scratch", "127.0.0.1:50209", "s0", 0],
-			["w", "send %s value %n", "sensor_update", "temp", 255],
-			["r", "HTTP GET 資料", "HTTPvalue"],
-			[" ", "HTTP POST 資料 %s", "httpPOST", ""],
-			[" ", "HTTP GET 資料 從 %s", "httpGET", ""],
-			["r", "語音資料", "voicedata"],
-			[" ", "錄音 %n 秒", "record", 3],
-			[" ", "%s 轉語音(中文)", "textovoice_tw", "文字"],
-			[" ", "%s 轉語音(英文)", "textovoice_en", "word"],
-			[" ", "語音速度 %m.speed", "voiceSpeed", 0],
-			[" ", "語音音量 %m.volume", "voiceVolume", 100]
+            ["r", "virtual sensor s0",  "s0"],
+            ["r", "virtual sensor s1",  "s1"],
+            ["w", "向ip: %s 傳送變數 %s 值 %s", "sensor_update_scratch", "127.0.0.1:50209", "s0", 0],
+            ["w", "send %s value %n", "sensor_update", "temp", 255],
+            ["r", "HTTP GET 資料", "HTTPvalue"],
+            [" ", "HTTP POST 資料 %s", "httpPOST", ""],
+            [" ", "HTTP GET 資料 從 %s", "httpGET", ""],
+            ["r", "語音資料", "voicedata"],
+            [" ", "錄音 %n 秒", "record", 3],
+            [" ", "%s 轉語音(中文)", "textovoice_tw", "文字"],
+            [" ", "%s 轉語音(英文)", "textovoice_en", "word"],
+            [" ", "語音速度 %m.speed", "voiceSpeed", 0],
+            [" ", "語音音量 %m.volume", "voiceVolume", 100]
 		],
         menus: {
             pin_state: ['啟用', '停用'],
             digital_pin_mode: ['輸入', '輸出', 'PWM', '伺服機', '音調'],
             high_low: ["0", "1"],
-			speed : [-5,-4,-3,-2,-1,0,1,2,3,4,5],
-			volume : [0,10,20,30,40,50,60,70,80,90,100]
+            speed : [-5,-4,-3,-2,-1,0,1,2,3,4,5],
+            volume : [0,10,20,30,40,50,60,70,80,90,100]
     },
         url: 'https://kodorobot.github.io/scratchx/'
   };
