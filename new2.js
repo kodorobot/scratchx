@@ -15,6 +15,7 @@
 (function(ext) {
 	
     var isConnected = false;
+	var sensor_data = {};
 
     ext._getStatus = function () {
         if (isConnected) return { status: 2, msg: 'Okay' };
@@ -83,11 +84,9 @@
         };
         connection.onmessage = function (e) {
             console.log(e.data);
-            if (e.data[0] != "{")
-                return;
-
-            var jsonObj = JSON.parse(e.data.substring(0, e.data.length - 1));
-
+            var sensor = e.data.split("\n");
+			for(var i = 0;i < sensor.length;i++) sensor_data[sensor[i].split(" ")[0]] = sensor[i].split(" ")[1];
+			console.log(e.sensor_data);
         };
         connection.onerror = function (e) {
             isConnected = false;
