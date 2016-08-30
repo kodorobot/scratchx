@@ -113,6 +113,7 @@
 	}
 	
     ext.voicedata = function(){
+		console.log(sensor_data["voicedata"]);
         return sensor_data["voicedata"];
 	}
 	
