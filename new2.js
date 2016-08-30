@@ -29,6 +29,14 @@
             socketConnection("127.0.0.1", 50209);
     }
 	
+	ext.digital_pin_mode = function (able, pin, mode) {
+
+        send("digital_pin_mode/" + able + "/" + pin + "/" + mode);
+		
+	function send(cmd) {
+        connection.send(cmd + "\r\n");
+    }
+	
 	function socketConnection(ip, port) {
         connection = new WebSocket('ws://' + ip + ':' + port);
         connection.onopen = function (e) {
