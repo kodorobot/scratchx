@@ -71,13 +71,13 @@
 	}
 	
 	ext.digital_read = function(pin){
-		var value = 0;
-		eval('value=sensor_data.digital_read/' + pin);
+		var pin = "digital_read/" + pin;
+		var value = sensor_data[pin];
+		console.log(value);
 		return value;
 	}
 	
 	ext.analog_read = function(pin){
-		
 		var pin = "analog_read/" + pin;
 		var value = sensor_data[pin];
 		console.log(value);
