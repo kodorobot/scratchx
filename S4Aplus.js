@@ -182,6 +182,7 @@
     function replaceAll(str, find, replace) {
         while(str.search(find) != -1) str = str.replace(find, replace);
     return str;
+	}
 
     var descriptor = {
         blocks: [
