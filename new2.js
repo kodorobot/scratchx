@@ -42,7 +42,7 @@
 	}
 		
     function send(cmd) {
-        connection.send(cmd + "\r\n");
+        connection.send(cmd);
     }
 	
     function socketConnection(ip, port) {
