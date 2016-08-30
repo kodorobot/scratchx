@@ -102,6 +102,60 @@
 	ext.Digital3 = function(){
 		return sensor_data["Digital3"];
 	}
+	
+    ext.s0 = function(){
+        return sensor_data["s0"];
+	}
+	
+    ext.s1 = function(){
+        return sensor_data["s1"];
+	}
+	
+    ext.sensor_update_scratch = function(ip, key, value){
+        send("/sensor_update_scratch/" + 0 + "/" + ip + "/" + key + "/" + value);
+	}
+	
+    ext.sensor_update = function(key, value){
+        send("/sensor_update/" + 0 + "/" + key + "/" + value);
+	}
+	
+    ext.HTTPvalue = function(){
+        return sensor_data["HTTPvalue"];
+	}
+	
+    ext.httpPOST = function(url){
+        url = replaceAll(url,"/","%2F")
+        send("/httpPOST/" + url);
+	}
+	
+    ext.httpGET = function(url){
+        url = replaceAll(url,"/","%2F")
+        send("/httpGET/" + url);
+	}
+	
+    ext.voicedata = function(){
+        return decodeURI(sensor_data["voicedata"]);
+	}
+	
+    ext.record = function(){
+        send("/record");
+	}
+	
+    ext.textovoice_tw = function(content){
+        send("/textovoice_tw/" + content);
+	}
+	
+    ext.textovoice_en = function(content){
+        send("/textovoice_en/" + content);
+	}
+	
+    ext.voiceSpeed = function(value){
+        send("/voiceSpeed/" + value);
+	}
+	
+    ext.voiceVolume = function(value){
+        send("/voiceVolume/" + value);
+	}
 		
     function send(cmd) {
         connection.send(cmd);
@@ -124,6 +178,10 @@
             isConnected = false;
         };
     }
+	
+    function replaceAll(str, find, replace) {
+        while(str.search(find) != -1) str = str.replace(find, replace);
+    return str;
 
     var descriptor = {
         blocks: [
@@ -144,16 +202,31 @@
 			["w", "motor  %m.MotorPin off", "motoroff", "8"],
 			["w", "motor  %m.MotorPin direction %m.MotorDirection", "MotorDirection", "8", "clockwise"],
 			["w", "motor  %m.MotorPin angle %n", "motorangle", "8", 180]
+			["r", "virtual sensor s0",  "s0"],
+            ["r", "virtual sensor s1",  "s1"],
+            ["w", "向ip: %s 傳送變數 %s 值 %s", "sensor_update_scratch", "127.0.0.1:50209", "s0", 0],
+            ["w", "send %s value %n", "sensor_update", "temp", 255],
+            ["r", "HTTP GET 資料", "HTTPvalue"],
+            [" ", "HTTP POST 資料 %s", "httpPOST", ""],
+            [" ", "HTTP GET 資料 從 %s", "httpGET", ""],
+            ["r", "語音資料", "voicedata"],
+            [" ", "錄音 %n 秒", "record", 3],
+            [" ", "%s 轉語音(中文)", "textovoice_tw", "文字"],
+            [" ", "%s 轉語音(英文)", "textovoice_en", "word"],
+            [" ", "語音速度 %m.speed", "voiceSpeed", 0],
+            [" ", "語音音量 %m.volume", "voiceVolume", 100]
 		],
         menus: {
             d2d3: ["Digital2", "Digital3"],
-			ValueOfSensor: ["Analog0", "Analog1", "Analog2", "Analog3", "Analog4", "Analog5"],
-			MotorDirection: ["clockwise", "anticlockwise"],
-			digitalOutPin: ["13", "12", "11", "10"],
-			MotorPin: ["8", "7", "4"],
-			bodyPart: ["head", "shoulder", "elbow", "hand"],
-			coordinate: ["x", "y", "z"],
-			analogOutPin: ["9", "6", "5"]
+            ValueOfSensor: ["Analog0", "Analog1", "Analog2", "Analog3", "Analog4", "Analog5"],
+            MotorDirection: ["clockwise", "anticlockwise"],
+            digitalOutPin: ["13", "12", "11", "10"],
+            MotorPin: ["8", "7", "4"],
+            bodyPart: ["head", "shoulder", "elbow", "hand"],
+            coordinate: ["x", "y", "z"],
+            analogOutPin: ["9", "6", "5"],
+            speed : [-5,-4,-3,-2,-1,0,1,2,3,4,5],
+            volume : [0,10,20,30,40,50,60,70,80,90,100]
     },
         url: 'https://kodorobot.github.io/scratchx/'
   };
