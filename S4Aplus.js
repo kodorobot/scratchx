@@ -232,7 +232,7 @@
         url: 'https://kodorobot.github.io/scratchx/'
   };
 
-    ScratchExtensions.register('S4Aplus', descriptor, ext);
+    ScratchExtensions.register(' ', descriptor, ext);
 
 
 })({});
