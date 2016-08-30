@@ -40,9 +40,38 @@
 
         send("/digital_pin_mode/" + able + "/" + pin + "/" + mode);
 	}
+	
+    ext.analog_pin_mode = function (able, pin){
+        if(able == "啟用") able = "%E5%95%9F%E7%94%A8";
+        else if(able == "停用") able = "%E5%81%9C%E7%94%A8";
+		
+		send("/analog_pin_mode/" + able + "/" + pin);
+		
+	}
+	
+	ext.digital_write = function(pin, value){
+		send("/digital_write/" + pin + "/" + value);
+	}
+	
+	ext.analog_write = function(pin,value){
+		send("/analog_write/" + pin + "/" + value);
+	}
+	
+	ext.play_tone = function(pin, frequency, time){
+		send("/play_tone/" + pin + "/" + frequency + "/" + time);
+	}
+	
+	ext.tone_off = function(pin){
+		send("/tone_off/" + pin);
+	}
+	
+	ext.set_servo_position = function(pin, angle){
+		send("/set_servo_position/" + pin + "/" + angle);
+	}
 		
     function send(cmd) {
         connection.send(cmd);
+		console.log("ok");
     }
 	
     function socketConnection(ip, port) {
