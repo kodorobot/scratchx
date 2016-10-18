@@ -16,7 +16,7 @@
 	
     var isConnected = false;
 	var sensor_data = {};
-    var = poller = null;
+    var poller = null;
 
     ext._getStatus = function () {
         return { status: 2, msg: 'Okay' };
