@@ -18,8 +18,8 @@
 	var sensor_data = {};
 
     ext._getStatus = function () {
-        return { status: 2, msg: 'Okay' };
-        //if (!isConnected) return { status: 1, msg: 'no product is running' };
+        if (isConnected) return { status: 2, msg: 'Okay' };
+        if (!isConnected) return { status: 1, msg: 'no product is running' };
     };
 	
     ext._shutdown = function() {
