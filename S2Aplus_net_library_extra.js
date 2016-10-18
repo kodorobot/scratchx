@@ -246,7 +246,7 @@
         send("/distance/" + value);
     }
     
-    ext.3_color_led = function(pin, value, pin2, value2, pin3, value3){
+    ext.three_color_led = function(pin, value, pin2, value2, pin3, value3){
         send("/3_color_led/" + pin + "/" + value + "/" + pin2 + "/" + value2 + "/" + pin3 + "/" + value3);
     }
     
@@ -442,7 +442,7 @@
             [" ", "紅外線接收器 種類:%m.type 秒數:%n (D2)", "IR_receive", "玩具", 10],
             ["r", "US-016 距離", "distance_US_016"],
             [" ", "距離感測器US-016(A) %n", "distance2", 0],
-            [" ", "3色LED 藍(D) %n PWM %n 紅(D) %n PWM %n 綠(D) %n PWM %n", "3_color_led", 5, 100, 6, 100, 9, 100],
+            [" ", "3色LED 藍(D) %n PWM %n 紅(D) %n PWM %n 綠(D) %n PWM %n", "three_color_led", 5, 100, 6, 100, 9, 100],
             ["r", "可變電阻數值", "value_potentiometer"],
             [" ", "可變電阻(A) %n", "potentiometer", 0],
             ["r", "聲音感測器數值", "value_sound_sensor"],
