@@ -165,7 +165,6 @@
             if (http.readyState == 4) {
                 var sensor = http.responseText.split("\n");
                 for(var i = 0;i < sensor.length;i++) sensor_data[sensor[i].split(" ")[0].toString()] = sensor[i].split(" ")[1];
-                }
             }
         }
         http.send();
