@@ -168,7 +168,7 @@
     }
 	
     function socketConnection(ip, port) {
-        connection = new WebSocket('ws://' + ip + ':' + port);
+        connection = new WebSocket('http://' + ip + ':' + port);
         connection.onopen = function (e) {
             isConnected = true;
         };
