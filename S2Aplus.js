@@ -142,9 +142,6 @@
         send("/voiceVolume/" + value);
 	}
     
-    ext.poll = function(value){
-        send_poll();
-    }
 		
     function send(cmd) {
         //connection.send(cmd);
