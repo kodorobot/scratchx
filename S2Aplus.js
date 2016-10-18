@@ -18,8 +18,8 @@
 	var sensor_data = {};
 
     ext._getStatus = function () {
-        if (isConnected) return { status: 2, msg: 'Okay' };
-        if (!isConnected) return { status: 1, msg: 'no product is running' };
+        return { status: 2, msg: 'Okay' };
+        //if (!isConnected) return { status: 1, msg: 'no product is running' };
     };
 	
     ext._shutdown = function() {
@@ -144,7 +144,7 @@
     
 		
     function send(cmd) {
-        connection.send(cmd);
+        //connection.send(cmd);
         var http = new XMLHttpRequest();
         http.open("POST", "http://127.0.0.1:50209" + cmd, true);
         http.onreadystatechange = function() {
@@ -168,7 +168,7 @@
     }
 	
     function socketConnection(ip, port) {
-        connection = new WebSocket('http://' + ip + ':' + port);
+        connection = new WebSocket('ws://' + ip + ':' + port);
         connection.onopen = function (e) {
             isConnected = true;
         };
