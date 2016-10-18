@@ -14,12 +14,12 @@
  */
 (function(ext) {
 	
-    var isConnected = true;
+    var isConnected = false;
 	var sensor_data = {};
 
     ext._getStatus = function () {
         if (isConnected) return { status: 2, msg: 'Okay' };
-        //if (!isConnected) return { status: 1, msg: 'no product is running' };
+        if (!isConnected) return { status: 1, msg: 'no product is running' };
     };
 	
     ext._shutdown = function() {
@@ -112,11 +112,11 @@
 	}
 	
     ext.sensor_update_scratch = function(ip, key, value){
-        send("/sensor_update_scratch/" + "/" + ip + "/" + key + "/" + value);
+        send("/sensor_update_scratch/" + 0 + "/" + ip + "/" + key + "/" + value);
 	}
 	
     ext.sensor_update = function(key, value){
-        send("/sensor_update/" + "/" + key + "/" + value);
+        send("/sensor_update/" + 0 + "/" + key + "/" + value);
 	}
 	
     ext.HTTPvalue = function(){
@@ -158,19 +158,11 @@
 	}
 		
     function send(cmd) {
-        //connection.send(cmd);
-        var http = new XMLHttpRequest();
-        http.open("POST", "http://127.0.0.1:50209" + cmd, true);
-        http.onreadystatechange = function() {
-            if (http.readyState == 4) {
-                console.log(http.responseText);
-            }
-        }
-        http.send();
+        connection.send(cmd);
     }
 	
     function socketConnection(ip, port) {
-        connection = new WebSocket('ws://' + ip + ':' + port + "/ws");
+        connection = new WebSocket('ws://' + ip + ':' + port);
         connection.onopen = function (e) {
             isConnected = true;
         };
@@ -211,7 +203,19 @@
 			["w", "motor  %m.MotorPin off", "motoroff", "8"],
 			["w", "motor  %m.MotorPin direction %m.MotorDirection", "MotorDirection", "8", "clockwise"],
 			["w", "motor  %m.MotorPin angle %n", "motorangle", "8", 180],
-
+			["r", "virtual sensor s0",  "s0"],
+            ["r", "virtual sensor s1",  "s1"],
+            ["w", "向ip: %s 傳送變數 %s 值 %s", "sensor_update_scratch", "127.0.0.1:50209", "s0", 0],
+            ["w", "send %s value %n", "sensor_update", "temp", 255],
+            ["r", "HTTP GET 資料", "HTTPvalue"],
+            [" ", "HTTP POST 資料 %s", "httpPOST", ""],
+            [" ", "HTTP GET 資料 從 %s", "httpGET", ""],
+            ["r", "語音資料", "voicedata"],
+            [" ", "錄音 %n 秒", "record", 3],
+            [" ", "%s 轉語音(中文)", "textovoice_tw", "文字"],
+            [" ", "%s 轉語音(英文)", "textovoice_en", "word"],
+            [" ", "語音速度 %m.speed", "voiceSpeed", 0],
+            [" ", "語音音量 %m.volume", "voiceVolume", 100]
 		],
         menus: {
             d2d3: ["Digital2", "Digital3"],
@@ -222,12 +226,13 @@
             bodyPart: ["head", "shoulder", "elbow", "hand"],
             coordinate: ["x", "y", "z"],
             analogOutPin: ["9", "6", "5"],
-
+            speed : [-5,-4,-3,-2,-1,0,1,2,3,4,5],
+            volume : [0,10,20,30,40,50,60,70,80,90,100]
     },
         url: 'https://kodorobot.github.io/scratchx/'
   };
 
-    ScratchExtensions.register(' ', descriptor, ext);
+    ScratchExtensions.register('S4Aplus', descriptor, ext);
 
 
 })({});
