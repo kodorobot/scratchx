@@ -16,7 +16,9 @@
 	
     var isConnected = false;
 	var sensor_data = {};
-    var poller = null;
+    var poller = setInterval(function() {
+        console.log("poll");
+    }, 1000);
 
     ext._getStatus = function () {
         return { status: 2, msg: 'Okay' };
@@ -29,9 +31,6 @@
     ext.connect = function () {
         if (!isConnected)
             socketConnection("127.0.0.1", 50209);
-        poller = setInterval(function() {
-        console.log("poll");
-    }, 1000);
     }
 	
     ext.digital_pin_mode = function (able, pin, mode) {
