@@ -218,7 +218,7 @@
         send("/dht11/" + value);
     }
     
-    ext.distance_HC-SR04 = function(){
+    ext.distance_HC_SR04 = function(){
         return sensor_data["distance_HC-SR04"];
     }
     
@@ -311,7 +311,7 @@
             ["r", "DHT11 濕度", "humidity_dht11"],
             ["r", "DHT11 溫度", "temperature_dht11"],
             [" ", "DHT11 溫濕度感測器(D) %n", "dht11", 2],
-            ["r", "HC-SR04 距離", "distance_HC-SR04"],
+            ["r", "HC-SR04 距離", "distance_HC_SR04"],
             [" ", "距離感測器HC-SR04 trig %n echo(A) %n", "distance", 10, 0],
             ["r", "紅外線資料", "IR_data"],
             [" ", "發射訊號 種類:%m.type %s (uno:D3 mega:D11)", "IR_send", "玩具", ""],
