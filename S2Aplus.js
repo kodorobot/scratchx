@@ -16,6 +16,7 @@
 	
     var isConnected = false;
 	var sensor_data = {};
+    var = poller = null;
 
     ext._getStatus = function () {
         return { status: 2, msg: 'Okay' };
@@ -28,6 +29,9 @@
     ext.connect = function () {
         if (!isConnected)
             socketConnection("127.0.0.1", 50209);
+        poller = setInterval(function() {
+        console.log("poll");
+    }, 1000);
     }
 	
     ext.digital_pin_mode = function (able, pin, mode) {
@@ -97,11 +101,11 @@
 	}
 	
     ext.sensor_update_scratch = function(ip, key, value){
-        send("/sensor_update_scratch/" + 0 + "/" + ip + "/" + key + "/" + value);
+        send("/sensor_update_scratch/" + "/" + ip + "/" + key + "/" + value);
 	}
 	
     ext.sensor_update = function(key, value){
-        send("/sensor_update/" + 0 + "/" + key + "/" + value);
+        send("/sensor_update/" + "/" + key + "/" + value);
 	}
 	
     ext.HTTPvalue = function(){
@@ -141,10 +145,6 @@
     ext.voiceVolume = function(value){
         send("/voiceVolume/" + value);
 	}
-    
-    ext.poll = function(value){
-        console.log("poll");
-    }
     
 		
     function send(cmd) {
