@@ -44,15 +44,14 @@
         send("/digital_pin_mode/" + able + "/" + pin + "/" + mode);
 	}
 	
-    ext.analog_pin_mode = function (able, pin, mode){
+    ext.analog_pin_mode = function (able, pin){
         if(able == "啟用") able = "%E5%95%9F%E7%94%A8";
         else if(able == "停用") able = "%E5%81%9C%E7%94%A8";
-        
-        if(mode == "輸入") mode = "%E8%BC%B8%E5%85%A5";
+		
         else if(mode == "輸入(pull-up)") mode = "pull-up";
         else if(mode == "輸入(pull-down)") mode = "pull-down";
-		
-        send("/analog_pin_mode/" + able + "/" + pin + "/" + mode);
+        
+        send("/analog_pin_mode/" + able + "/" + pin);
 		
 	}
 	
@@ -107,17 +106,53 @@
     ext.HTTPvalue = function(){
         return sensor_data["HTTPvalue"];
 	}
+    
+    ext.HTTPvalue_number = function(){
+        return sensor_data["HTTPvalue_number"];
+	}
+    
+    ext.HTTPvalue_processed = function(){
+        return sensor_data["HTTPvalue_processed"];
+	}
+    
+    ext.HTTP_allkeyValue = function(){
+        return sensor_data["HTTP_allkeyValue"];
+	}
+    
+    ext.HTTP_keyValue = function(){
+        return sensor_data["HTTP_keyValue"];
+	}
 	
     ext.httpPOST = function(url){
         url = replaceAll(url,"/","%2F")
         send("/httpPOST/" + url);
 	}
 	
-    ext.httpGET = function(url){
+    ext.httpGET_type = function(type, url){
         url = replaceAll(url,"/","%2F")
-        send("/httpGET/" + url);
+        send("/httpGET_type/" + type + "/" + url);
+	}
+    
+    ext.httpGET_database = function(type, value){
+        send("/httpGET_database/" + type + "/" + value);
+	}
+    
+    ext.jsonDataSelect_thingspeak = function(type, value){
+        send("/jsonDataSelect_thingspeak/" + type + "/" + value);
+	}
+    
+    ext.jsonDataSelect = function(type, value){
+        send("/jsonDataSelect/" + type + "/" + value);
 	}
 	
+    ext.keyFind = function(){
+        send("/keyFind/");
+	}
+    
+    ext.keySelect = function(url){
+        send("/keySelect/" + url);
+	}
+    
     ext.voicedata = function(){
         return decodeURI(sensor_data["voicedata"]);
 	}
@@ -142,6 +177,66 @@
         send("/voiceVolume/" + value);
 	}
     
+    ext.datavalue = function(){
+        return sensor_data["datavalue"];
+    }
+    
+    ext.opendata = function(value){
+        send("/opendata/" + value);
+    }
+    
+    ext.opendata2 = function(value, num){
+        send("/opendata2/" + value + "/" + num);
+    }
+    
+    ext.writedata = function(input, value){
+        send("/writedata/" + input + "/" + value);
+    }
+    
+    ext.appenddata = function(input, value){
+        send("/appenddata/" + input + "/" + value);
+    }
+    
+    ext.open_notepad = function(value){
+        send("/open_notepad/" + value);
+    }
+    
+    ext.openBrowser = function(url){
+        url = replaceAll(url,"/","%2F")
+        send("/openBrowser/" + url);
+    }
+    
+    ext.humidity_dht11 = function(){
+        return sensor_data["humidity_dht11"];
+    }
+    
+    ext.temperature_dht11 = function(){
+        return sensor_data["temperature_dht11"];
+    }
+    
+    ext.dht11 = function(value){
+        send("/dht11/" + value);
+    }
+    
+    ext.distance_HC-SR04 = function(){
+        return sensor_data["distance_HC-SR04"];
+    }
+    
+    ext.distance = function(pin, pin2){
+        send("/distance/" + pin + "/" + pin2);
+    }
+    
+    ext.IR_data = function(){
+        return sensor_data["IR_data"];
+    }
+    
+    ext.IR_send = function(type, value){
+        send("/IR_send/" + type + "/" + value);
+    }
+    
+    ext.IR_receive = function(type, value){
+        send("/IR_receive/" + type + "/" + value);
+    }
 		
     function send(cmd) {
         //connection.send(cmd);
@@ -190,12 +285,47 @@
             ["", "設定第 %n 腳位為伺服機輸出 轉動角度為 %n", "set_servo_position", "號碼", 90],
             ["r", "讀取數位腳位 %n 的值", "digital_read", "號碼"],
             ["r", "讀取類比腳位(A) %n 的值", "analog_read", "號碼"],
+            ["r", "資料", "datavalue"],
+            [" ", "讀取本機資料 從 %s", "opendata", "temp.txt"],
+            [" ", "讀取本機資料 從 %s 第 %n 行", "opendata2", "temp.txt", 1],
+            [" ", "儲存資料 %s 在 %s", "writedata", "", "temp.txt"],
+            [" ", "附加資料 %s 在 %s", "appenddata", "", "temp.txt"],
+            [" ", "開啟檔案 %s", "open_notepad", "temp.txt"],
+            ["r", "virtual sensor s0",  "s0"],
+            ["r", "virtual sensor s1",  "s1"],
+            ["w", "向ip: %s 傳送變數 %s 值 %s", "sensor_update_scratch", "127.0.0.1:50209", "s0", 0],
+            ["w", "send %s value %n", "sensor_update", "temp", 255],
+            [" ", "開啟網頁 %s", "openBrowser", "http://www.kodorobot.com"],
+            ["r", "雲端資料", "HTTPvalue"],
+            ["r", "雲端資料筆數", "HTTPvalue_number"],
+            ["r", "剖析資料", "HTTPvalue_processed"],
+            ["r", "可使用的欄位", "HTTP_allkeyValue"],
+            ["r", "選擇的欄位", "HTTP_keyValue"],
+            [" ", "HTTP POST 資料 %s", "httpPOST", "https://api.thingspeak.com/update?api_key=<api_key>&field1=<value>"],
+            [" ", "HTTP GET 資料 類型:%m.type 從 %s", "httpGET_type", "json_thingspeak", "https://thingspeak.com/channels/<channel_ID>/feed.json"],
+            [" ", "HTTP GET 資料庫:%m.database channel ID: %s", "httpGET_database", "thingspeak", ""],
+            [" ", "thingspeak雲端資料選擇 欄位:%m.key 第 %n 筆的剖析資料", "jsonDataSelect_thingspeak", "field1", "1"],
+            [" ", "雲端資料選擇 欄位:%s 第 %n 筆的剖析資料", "jsonDataSelect", "field1", "1"],
+            [" ", "Data 剖析可使用的欄位", "keyFind"],
+            [" ", "Data 剖析 第 %n 筆的欄位", "keySelect", "1"],
+            ["r", "DHT11 濕度", "humidity_dht11"],
+            ["r", "DHT11 溫度", "temperature_dht11"],
+            [" ", "DHT11 溫濕度感測器(D) %n", "dht11", 2],
+            ["r", "HC-SR04 距離", "distance_HC-SR04"],
+            [" ", "距離感測器HC-SR04 trig %n echo(A) %n", "distance", 10, 0],
+            ["r", "紅外線資料", "IR_data"],
+            [" ", "發射訊號 種類:%m.type %s (uno:D3 mega:D11)", "IR_send", "玩具", ""],
+            [" ", "紅外線接收器 種類:%m.type 秒數:%n (D2)", "IR_receive", "玩具", 10],
 		],
         menus: {
             pin_state: ['啟用', '停用'],
             digital_pin_mode: ['輸入',"輸入(pull-up)","輸入(pull-down)", '輸出', 'PWM', '伺服機', '音調'],
             analog_pin_mode: ["輸入", "輸入(pull-up)", "輸入(pull-down)"],
             high_low: ["0", "1"],
+            type: ["raw", "json_thingspeak", "json_opendata"],
+            key: ["field1", "field2"],
+            database: ["thingspeak"],
+            type: ["玩具", "冷氣"],
     },
         url: 'https://kodorobot.github.io/scratchx/'
   };

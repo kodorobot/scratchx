@@ -14,12 +14,12 @@
  */
 (function(ext) {
 	
-    var isConnected = true;
+    var isConnected = false;
 	var sensor_data = {};
 
     ext._getStatus = function () {
         if (isConnected) return { status: 2, msg: 'Okay' };
-        //if (!isConnected) return { status: 1, msg: 'no product is running' };
+        if (!isConnected) return { status: 1, msg: 'no product is running' };
     };
 	
     ext._shutdown = function() {
@@ -158,15 +158,7 @@
 	}
 		
     function send(cmd) {
-        //connection.send(cmd);
-        var http = new XMLHttpRequest();
-        http.open("POST", "http://127.0.0.1:50209" + cmd, true);
-        http.onreadystatechange = function() {
-            if (http.readyState == 4) {
-                console.log(http.responseText);
-            }
-        }
-        http.send();
+        connection.send(cmd);
     }
 	
     function socketConnection(ip, port) {
