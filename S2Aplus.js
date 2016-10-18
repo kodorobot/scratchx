@@ -163,7 +163,7 @@
         http.open("GET", "http://127.0.0.1:50209/poll", true);
         http.onreadystatechange = function() {
             if (http.readyState == 4) {
-                console.log(http.responseText);
+                console.log(http.responseText.length);
                 var sensor = http.responseText.split("\n");
                 for(var i = 0;i < sensor.length;i++) sensor_data[sensor[i].split(" ")[0].toString()] = sensor[i].split(" ")[1];
             }
@@ -212,8 +212,6 @@
             digital_pin_mode: ['輸入',"輸入(pull-up)","輸入(pull-down)", '輸出', 'PWM', '伺服機', '音調'],
             analog_pin_mode: ["輸入", "輸入(pull-up)", "輸入(pull-down)"],
             high_low: ["0", "1"],
-            speed : [-5,-4,-3,-2,-1,0,1,2,3,4,5],
-            volume : [0,10,20,30,40,50,60,70,80,90,100]
     },
         url: 'https://kodorobot.github.io/scratchx/'
   };
