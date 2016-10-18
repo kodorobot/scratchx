@@ -18,8 +18,8 @@
 	var sensor_data = {};
 
     ext._getStatus = function () {
-        if (isConnected) return { status: 2, msg: 'Okay' };
-        if (!isConnected) return { status: 1, msg: 'no product is running' };
+        return { status: 2, msg: 'Okay' };
+        //if (!isConnected) return { status: 1, msg: 'no product is running' };
     };
 	
     ext._shutdown = function() {
@@ -38,15 +38,21 @@
         else if(mode == "輸出") mode = "%E8%BC%B8%E5%87%BA";
         else if(mode == "伺服機") mode = "%E4%BC%BA%E6%9C%8D%E6%A9%9F";
         else if(mode == "音調") mode = "%E9%9F%B3%E8%AA%BF";
+        else if(mode == "輸入(pull-up)") mode = "pull-up";
+        else if(mode == "輸入(pull-down)") mode = "pull-down";
 
         send("/digital_pin_mode/" + able + "/" + pin + "/" + mode);
 	}
 	
-    ext.analog_pin_mode = function (able, pin){
+    ext.analog_pin_mode = function (able, pin, mode){
         if(able == "啟用") able = "%E5%95%9F%E7%94%A8";
         else if(able == "停用") able = "%E5%81%9C%E7%94%A8";
+        
+        if(mode == "輸入") mode = "%E8%BC%B8%E5%85%A5";
+        else if(mode == "輸入(pull-up)") mode = "pull-up";
+        else if(mode == "輸入(pull-down)") mode = "pull-down";
 		
-        send("/analog_pin_mode/" + able + "/" + pin);
+        send("/analog_pin_mode/" + able + "/" + pin + "/" + mode);
 		
 	}
 	
@@ -135,9 +141,34 @@
     ext.voiceVolume = function(value){
         send("/voiceVolume/" + value);
 	}
+    
+    ext.poll = function(value){
+        send_poll();
+    }
 		
     function send(cmd) {
-        connection.send(cmd);
+        //connection.send(cmd);
+        var http = new XMLHttpRequest();
+        http.open("POST", "http://127.0.0.1:50209" + cmd, true);
+        http.onreadystatechange = function() {
+            if (http.readyState == 4) {
+                console.log(http.responseText);
+            }
+        }
+        http.send();
+    }
+    
+    function send_poll(){
+        var http = new XMLHttpRequest();
+        http.open("GET", "http://127.0.0.1:50209/poll", true);
+        http.onreadystatechange = function() {
+            if (http.readyState == 4) {
+                var sensor = http.responseText.split("\n");
+                for(var i = 0;i < sensor.length;i++) sensor_data[sensor[i].split(" ")[0].toString()] = sensor[i].split(" ")[1];
+                }
+            }
+        }
+        http.send();
     }
 	
     function socketConnection(ip, port) {
@@ -175,23 +206,11 @@
             ["", "設定第 %n 腳位為伺服機輸出 轉動角度為 %n", "set_servo_position", "號碼", 90],
             ["r", "讀取數位腳位 %n 的值", "digital_read", "號碼"],
             ["r", "讀取類比腳位(A) %n 的值", "analog_read", "號碼"],
-            ["r", "virtual sensor s0",  "s0"],
-            ["r", "virtual sensor s1",  "s1"],
-            [" ", "向ip: %s 傳送變數 %s 值 %s", "sensor_update_scratch", "127.0.0.1:50209", "s0", 0],
-            [" ", "send %s value %n", "sensor_update", "temp", 255],
-            ["r", "HTTP GET 資料", "HTTPvalue"],
-            [" ", "HTTP POST 資料 %s", "httpPOST", ""],
-            [" ", "HTTP GET 資料 從 %s", "httpGET", ""],
-            ["r", "語音資料", "voicedata"],
-            [" ", "錄音 %n 秒", "record", 3],
-            [" ", "%s 轉語音(中文)", "textovoice_tw", "文字"],
-            [" ", "%s 轉語音(英文)", "textovoice_en", "word"],
-            [" ", "語音速度 %m.speed", "voiceSpeed", 0],
-            [" ", "語音音量 %m.volume", "voiceVolume", 100]
 		],
         menus: {
             pin_state: ['啟用', '停用'],
-            digital_pin_mode: ['輸入', '輸出', 'PWM', '伺服機', '音調'],
+            digital_pin_mode: ['輸入',"輸入(pull-up)","輸入(pull-down)", '輸出', 'PWM', '伺服機', '音調'],
+            analog_pin_mode: ["輸入", "輸入(pull-up)", "輸入(pull-down)"],
             high_low: ["0", "1"],
             speed : [-5,-4,-3,-2,-1,0,1,2,3,4,5],
             volume : [0,10,20,30,40,50,60,70,80,90,100]
