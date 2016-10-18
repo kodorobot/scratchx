@@ -259,7 +259,6 @@
 
     var descriptor = {
         blocks: [
-			[' ', '連接 Transformer', 'connect'],
             ["r", "Analog0", "Analog0"],
 			["r", "Analog1", "Analog1"],
 			["r", "Analog2", "Analog2"],
