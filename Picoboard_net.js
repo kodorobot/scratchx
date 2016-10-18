@@ -46,19 +46,19 @@
         return sensor_data["sound"];
 	}
     
-    ext.resistance-A = function(){
+    ext.resistance_A = function(){
         return sensor_data["resistance-A"];
 	}
     
-    ext.resistance-B = function(){
+    ext.resistance_B = function(){
         return sensor_data["resistance-B"];
 	}
     
-    ext.resistance-C = function(){
+    ext.resistance_C = function(){
         return sensor_data["resistance-C"];
 	}
     
-    ext.resistance-D = function(){
+    ext.resistance_D = function(){
         return sensor_data["resistance-D"];
 	}
     
@@ -211,10 +211,10 @@
             [ "r", "button", "button" ],
             [ "r", "light", "light" ],
             [ "r", "sound", "sound" ],
-            [ "r", "resistance-A", "resistance-A" ],
-            [ "r", "resistance-B", "resistance-B" ],
-            [ "r", "resistance-C", "resistance-C" ],
-            [ "r", "resistance-D", "resistance-D" ],
+            [ "r", "resistance-A", "resistance_A" ],
+            [ "r", "resistance-B", "resistance_B" ],
+            [ "r", "resistance-C", "resistance_C" ],
+            [ "r", "resistance-D", "resistance_D" ],
 
             [ "b", "sensor %m.booleanSensor?", "getbool", "button pressed" ],
             [ "r", "%m.sensor sensor value", "getvalue", "slider" ],
