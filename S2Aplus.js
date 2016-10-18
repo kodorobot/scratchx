@@ -14,15 +14,15 @@
  */
 (function(ext) {
 	
-    var isConnected = false;
+    var isConnected = true;
 	var sensor_data = {};
     var poller = setInterval(function() {
-        console.log("poll");
+        send_poll();
     }, 1000);
 
     ext._getStatus = function () {
-        return { status: 2, msg: 'Okay' };
-        //if (!isConnected) return { status: 1, msg: 'no product is running' };
+        if (isConnected) return { status: 2, msg: 'Okay' };
+        if (!isConnected) return { status: 1, msg: 'no product is running' };
     };
 	
     ext._shutdown = function() {
@@ -163,6 +163,7 @@
         http.open("GET", "http://127.0.0.1:50209/poll", true);
         http.onreadystatechange = function() {
             if (http.readyState == 4) {
+                console.log(http.responseText);
                 var sensor = http.responseText.split("\n");
                 for(var i = 0;i < sensor.length;i++) sensor_data[sensor[i].split(" ")[0].toString()] = sensor[i].split(" ")[1];
             }
