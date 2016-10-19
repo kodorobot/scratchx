@@ -153,7 +153,7 @@
     }
     
     function send_poll(){
-        $.get("http://127.0.0.1:50209/", function(data){
+        $.get("http://127.0.0.1:50209/poll/", function(data){
           console.log(data);
         });
     }
