@@ -158,7 +158,7 @@
     
     function send_poll() {
         var http = new XMLHttpRequest();
-        http.open("GET", "http://127.0.0.1:50209" + cmd, true);
+        http.open("GET", "http://127.0.0.1:50209/poll", true);
         http.onreadystatechange = function() {
             if (http.readyState == 4) {
                 console.log(http.responseText);
