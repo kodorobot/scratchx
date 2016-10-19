@@ -164,8 +164,7 @@
         console.log("Error downloading ISS data");
       }
     });
-        });
-    }
+        }
 	
     function socketConnection(ip, port) {
         connection = new WebSocket('ws://' + ip + ':' + port);
