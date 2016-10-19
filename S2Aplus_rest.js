@@ -16,7 +16,8 @@
 	
     var isConnected = true;
 	var sensor_data = {};
-
+    var poller = setInterval(send_poll, 1000);
+    
     ext._getStatus = function () {
         if (isConnected) return { status: 2, msg: 'Okay' };
         //if (!isConnected) return { status: 1, msg: 'no product is running' };
@@ -147,6 +148,17 @@
         //connection.send(cmd);
         var http = new XMLHttpRequest();
         http.open("POST", "http://127.0.0.1:50209" + cmd, true);
+        http.onreadystatechange = function() {
+            if (http.readyState == 4) {
+                console.log(http.responseText);
+            }
+        }
+        http.send();
+    }
+    
+    function send_poll() {
+        var http = new XMLHttpRequest();
+        http.open("GET", "http://127.0.0.1:50209" + cmd, true);
         http.onreadystatechange = function() {
             if (http.readyState == 4) {
                 console.log(http.responseText);
