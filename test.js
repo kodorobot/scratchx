@@ -17,7 +17,7 @@
     var isConnected = false;
 	var sensor_data = {};
     
-    var poll = setInterval(send_poll, 1000);
+    var poller = setInterval(send_poll, 1000);
 
     ext._getStatus = function () {
         if (isConnected) return { status: 2, msg: 'Okay' };
@@ -25,6 +25,10 @@
     };
 	
     ext._shutdown = function() {
+        if (poller) {
+          clearInterval(poller);
+          poller = null;
+        }
   };
   
     ext.connect = function () {
