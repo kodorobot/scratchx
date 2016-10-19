@@ -157,6 +157,7 @@
       type: "GET",
       dataType: "text",
       url: "http://127.0.0.1:50209/poll/",
+      contentType: "text/plain",
       success: function(data) {
         console.log(data);
       },
