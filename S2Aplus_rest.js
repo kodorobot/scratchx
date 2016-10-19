@@ -16,7 +16,7 @@
 	
     var isConnected = false;
 	var sensor_data = {};
-    var poll_request = setInterval(send_poll, 20);
+    var poll_request = setInterval(send_poll, 1000);
     
     ext._getStatus = function () {
         if (isConnected) return { status: 2, msg: 'Okay' };
@@ -166,7 +166,7 @@
             if (http.readyState == 4) {
                 if (http.responseText.length != 0){
                     if (!isConnected) isConnected = true;
-                    var sensor = e.data.split("\n");
+                    var sensor = http.responseText.split("\n");
                     for(var i = 0;i < sensor.length;i++) sensor_data[sensor[i].split(" ")[0].toString()] = sensor[i].split(" ")[1];
                 }
                 else isConnected = false;
