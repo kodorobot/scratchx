@@ -153,8 +153,17 @@
     }
     
     function send_poll(){
-        $.get("http://127.0.0.1:50209/poll/", function(data){
-          console.log(data);
+        $.ajax({
+      type: "GET",
+      dataType: "text",
+      url: "http://127.0.0.1:50209/poll/",
+      success: function(data) {
+        console.log(data);
+      },
+      error: function(jqxhr, textStatus, error) {
+        console.log("Error downloading ISS data");
+      }
+    });
         });
     }
 	
