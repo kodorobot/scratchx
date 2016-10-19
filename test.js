@@ -156,7 +156,7 @@
         $.ajax({
       type: "GET",
       dataType: "text",
-      url: "http://127.0.0.1:50209/poll",
+      url: "http://127.0.0.1:50209/poll/",
       success: function(data) {
         console.log(data);
       },
