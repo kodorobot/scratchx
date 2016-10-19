@@ -14,21 +14,24 @@
  */
 (function(ext) {
 	
-    var isConnected = true;
+    var isConnected = false;
 	var sensor_data = {};
-    var poller = setInterval(send_poll, 1000);
+    var poll_request = setInterval(send_poll, 20);
     
     ext._getStatus = function () {
         if (isConnected) return { status: 2, msg: 'Okay' };
-        //if (!isConnected) return { status: 1, msg: 'no product is running' };
+        if (!isConnected) return { status: 1, msg: 'no product is running' };
     };
 	
     ext._shutdown = function() {
+        if (poll_request) {
+          clearInterval(poll_request);
+          poll_request = null;
+        }
   };
   
     ext.connect = function () {
-        if (!isConnected)
-            socketConnection("127.0.0.1", 50209);
+
     }
 	
     ext.digital_pin_mode = function (able, pin, mode) {
@@ -161,28 +164,15 @@
         http.open("GET", "http://127.0.0.1:50209/poll", true);
         http.onreadystatechange = function() {
             if (http.readyState == 4) {
-                console.log(http.responseText);
+                if (http.responseText.length != 0){
+                    if (!isConnected) isConnected = true;
+                    var sensor = e.data.split("\n");
+                    for(var i = 0;i < sensor.length;i++) sensor_data[sensor[i].split(" ")[0].toString()] = sensor[i].split(" ")[1];
+                }
+                else isConnected = false;
             }
         }
         http.send();
-    }
-	
-    function socketConnection(ip, port) {
-        connection = new WebSocket('ws://' + ip + ':' + port);
-        connection.onopen = function (e) {
-            isConnected = true;
-        };
-        connection.onclose = function (e) {
-            isConnected = false;
-        };
-        connection.onmessage = function (e) {
-            //console.log(e.data);
-            var sensor = e.data.split("\n");
-			for(var i = 0;i < sensor.length;i++) sensor_data[sensor[i].split(" ")[0].toString()] = sensor[i].split(" ")[1];
-        };
-        connection.onerror = function (e) {
-            isConnected = false;
-        };
     }
 	
     function replaceAll(str, find, replace) {
