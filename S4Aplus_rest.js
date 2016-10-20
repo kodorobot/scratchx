@@ -206,12 +206,12 @@
 			["r", "Digital3", "Digital3"],
 			["r", "value of sensor %m.ValueOfSensor", "getvalue", "Analog0"],
 			["b", "sensor %m.d2d3 pressed?", "getbool", "Digital2"],
-			["w", "digital %m.digitalOutPin on", "OutPinOn", "13"],
-			["w", "digital %m.digitalOutPin off", "OutPinOff", "13"],
-			["w", "analog %m.analogOutPin value %n", "analogOutPin", "9", 255],
-			["w", "motor  %m.MotorPin off", "motoroff", "8"],
-			["w", "motor  %m.MotorPin direction %m.MotorDirection", "MotorDirection", "8", "clockwise"],
-			["w", "motor  %m.MotorPin angle %n", "motorangle", "8", 180],
+			[" ", "digital %d.digitalOutPin on", "OutPinOn", "13"],
+			[" ", "digital %d.digitalOutPin off", "OutPinOff", "13"],
+			[" ", "analog %d.analogOutPin value %n", "analogOutPin", "9", 255],
+			[" ", "motor  %d.MotorPin off", "motoroff", "8"],
+			[" ", "motor  %d.MotorPin direction %m.MotorDirection", "MotorDirection", "8", "clockwise"],
+			[" ", "motor  %d.MotorPin angle %n", "motorangle", "8", 180],
 
 		],
         menus: {
