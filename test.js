@@ -157,9 +157,6 @@
       type: "GET",
       dataType: "text",
       url: "http://127.0.0.1:50209/poll/",
-      beforeSend:function(){
-                    console.log("before");
-                },
       success: function(data) {
           isConnected = true;
         //console.log(data);
@@ -184,13 +181,11 @@
             }
         }
         http.send();
-    }
+    }*/
     
-    $(function() {
-
-    console.log("ok");
-
-});*/
+     $(window).load(function() {
+            console.log("ok");
+        });
 	
     function socketConnection(ip, port) {
         connection = new WebSocket('ws://' + ip + ':' + port);
