@@ -130,18 +130,15 @@
     ext.httpPOST = function(url){
         
         url = replaceAll(url,"/","%2F")
-        
         url = replaceAll(url,"&","%26")
-        
         url = replaceAll(url,"?","%3F")
-        
-        //url = replaceAll(url,"=","%3D")
-        console.log(url)
         send("/httpPOST/" + url);
 	}
 	
     ext.httpGET_type = function(type, url){
         url = replaceAll(url,"/","%2F")
+        url = replaceAll(url,"&","%26")
+        url = replaceAll(url,"?","%3F")
         send("/httpGET_type/" + type + "/" + url);
 	}
     
@@ -215,6 +212,8 @@
     
     ext.openBrowser = function(url){
         url = replaceAll(url,"/","%2F")
+        url = replaceAll(url,"&","%26")
+        url = replaceAll(url,"?","%3F")
         send("/openBrowser/" + url);
     }
 		

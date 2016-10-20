@@ -182,11 +182,15 @@
 	
     ext.httpPOST = function(url){
         url = replaceAll(url,"/","%2F")
+        url = replaceAll(url,"&","%26")
+        url = replaceAll(url,"?","%3F")
         send("/httpPOST/" + url);
 	}
 	
     ext.httpGET_type = function(type, url){
         url = replaceAll(url,"/","%2F")
+        url = replaceAll(url,"&","%26")
+        url = replaceAll(url,"?","%3F")
         send("/httpGET_type/" + type + "/" + url);
 	}
     
@@ -236,6 +240,8 @@
     
     ext.openBrowser = function(url){
         url = replaceAll(url,"/","%2F")
+        url = replaceAll(url,"&","%26")
+        url = replaceAll(url,"?","%3F")
         send("/openBrowser/" + url);
     }
         
@@ -288,7 +294,7 @@
     }
 	
     function replaceAll(str, find, replace) {
-        while(str.search(find) != -1) str = str.replace(find, replace);
+        while(str.indexOf(find) >= 0) { str = str.replace(find, replace); }
     return str;
 	}
 
@@ -324,8 +330,8 @@
             [" ", "開啟檔案 %s", "open_notepad", "temp.txt"],
             ["r", "virtual sensor s0",  "s0"],
             ["r", "virtual sensor s1",  "s1"],
-            ["w", "向ip: %s 傳送變數 %s 值 %s", "sensor_update_scratch", "127.0.0.1:50209", "s0", 0],
-            ["w", "send %s value %n", "sensor_update", "temp", 255],
+            [" ", "send %s value %n", "sensor_update", "temp", 255],
+            [" ", "向ip: %s 傳送變數 %s 值 %s", "sensor_update_scratch", "127.0.0.1:50209", "s0", 0],
             [" ", "開啟網頁 %s", "openBrowser", "http://www.kodorobot.com"],
             ["r", "雲端資料", "HTTPvalue"],
             ["r", "雲端資料筆數", "HTTPvalue_number"],
