@@ -19,7 +19,7 @@
     
     var poller = null;
     
-    setTimeout("start_poll()", 3000);
+    setTimeout(function(){ start_poll(); }, 3000);
     
     function start_poll(){
         poller = setInterval(send_poll, 1000);
