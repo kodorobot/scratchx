@@ -128,9 +128,9 @@
 	}
 	
     ext.httpPOST = function(url){
-        url = replaceAll(url,"/","%2F")
-        url = replaceAll(url,"&","%26")
-        url = replaceAll(url,"?","%3F")
+        url = replaceAll(url,"/","%2F");
+        url = replaceAll(url,"&","%26");
+        url = replaceAll(url,"?","%3F");
         //url = replaceAll(url,"=","%3D")
         console.log(url)
         send("/httpPOST/" + url);
