@@ -184,7 +184,7 @@
         blocks: [
             [" ", "%m.pin_state : 數位腳位 %n 為 %m.digital_pin_mode", "digital_pin_mode", "啟用", "號碼", "輸入"],
             [" ", "%m.pin_state : 類比腳位(A) %n 為 %m.analog_pin_mode", "analog_pin_mode", "啟用", "號碼", "輸入"],
-            ["", "數位輸出: 設定腳位 %n 為 %m.high_low", "digital_write", "號碼", 0],
+            ["", "數位輸出: 設定腳位 %n 為 %d.high_low", "digital_write", "號碼", 0],
             ["", "模擬類比輸出(PWM): 設定腳位 %n 的值為  %n", "analog_write", "號碼", "數量值"],
             ["", "在腳位 %n 播放音調, 頻率為: %n Hz, 時間為: %n ms", "play_tone", "號碼", 1000, 500],
             ["", "關閉腳位 %n 的音調", "tone_off", "號碼"],
