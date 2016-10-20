@@ -18,7 +18,6 @@
 	var sensor_data = {};
     
     var poller = setInterval(send_poll, 1000);
-    console.log("loaded");
 
     ext._getStatus = function () {
         if (isConnected) return { status: 2, msg: 'Okay' };
@@ -159,6 +158,7 @@
       dataType: "text",
       url: "http://127.0.0.1:50209/poll/",
       success: function(data) {
+          isConnected = true;
         console.log(data);
       },
       error: function(jqxhr, textStatus, error) {
