@@ -22,7 +22,7 @@
     setTimeout(function(){ start_poll(); }, 3000);
     
     function start_poll(){
-        poller = setInterval(send_poll, 1000);
+        poller = setInterval(send_poll, 30);
         console.log("ok");
     }
 
