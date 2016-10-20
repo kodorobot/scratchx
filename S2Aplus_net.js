@@ -247,9 +247,10 @@
     }
 	
     function replaceAll(str, find, replace) {
+        console.log(str.search(find))
         while(str.search(find) != -1){
             str = str.replace(find, replace);
-            console.log(str)
+            
         } 
     return str;
 }
