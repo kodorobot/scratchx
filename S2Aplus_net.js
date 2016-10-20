@@ -129,13 +129,12 @@
 	
     ext.httpPOST = function(url){
         url = replaceAll(url,"/","%2F")
-        console.log(url);
+        url = replaceAll(url,"&","%26")
         send("/httpPOST/" + url);
 	}
 	
     ext.httpGET_type = function(type, url){
         url = replaceAll(url,"/","%2F")
-        console.log(url);
         send("/httpGET_type/" + type + "/" + url);
 	}
     
