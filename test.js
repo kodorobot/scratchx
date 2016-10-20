@@ -171,7 +171,6 @@
         var http = new XMLHttpRequest();
         http.open("GET", "http://127.0.0.1:50209/poll", true);
         http.onreadystatechange = function() {
-            console.log(http.readyState);
             if (http.readyState == 4) {
                 if (http.responseText.length != 0){
                     if (!isConnected) isConnected = true;
@@ -183,6 +182,12 @@
         }
         http.send();
     }
+    
+    $(function() {
+
+    console.log("ok");
+
+}
 	
     function socketConnection(ip, port) {
         connection = new WebSocket('ws://' + ip + ':' + port);
