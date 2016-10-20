@@ -133,7 +133,7 @@
         
         url = replaceAll(url,"&","%26")
         
-        url = replaceAll(url,"\?","%3F")
+        url = replaceAll(url,"?","%3F")
         
         //url = replaceAll(url,"=","%3D")
         console.log(url)
@@ -247,11 +247,7 @@
     }
 	
     function replaceAll(str, find, replace) {
-        console.log(str.search(find));
-        while(str.search(find) != -1){
-            str = str.replace(find, replace);
-            
-        } 
+        while(str.indexOf(find) >= 0) { str = str.replace(find, replace); }
     return str;
 }
 
