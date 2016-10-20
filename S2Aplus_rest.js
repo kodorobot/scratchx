@@ -17,7 +17,6 @@
     var isConnected = false;
 	var sensor_data = {};
     var poll_request = setInterval(send_poll, 30);
-    console.log("loaded");
     
     ext._getStatus = function () {
         if (isConnected) return { status: 2, msg: 'Okay' };
@@ -162,11 +161,9 @@
     
     function send_poll() {
         var http = new XMLHttpRequest();
-        console.log("poll");
         http.open("GET", "http://127.0.0.1:50209/poll", true);
         http.onreadystatechange = function() {
             if (http.readyState == 4) {
-                
                 if (http.responseText.length != 0){
                     if (!isConnected) isConnected = true;
                     var sensor = http.responseText.split("\n");
