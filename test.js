@@ -152,7 +152,7 @@
         connection.send(cmd);
     }
     
-    function send_poll(){
+    /*function send_poll(){
         $.ajax({
       type: "GET",
       dataType: "text",
@@ -165,7 +165,24 @@
         console.log("Error downloading ISS data");
       }
     });
+        }*/
+        
+    function send_poll() {
+        var http = new XMLHttpRequest();
+        http.open("GET", "http://127.0.0.1:50209/poll", true);
+        http.onreadystatechange = function() {
+            console.log(http.readyState);
+            if (http.readyState == 4) {
+                if (http.responseText.length != 0){
+                    if (!isConnected) isConnected = true;
+                    var sensor = http.responseText.split("\n");
+                    for(var i = 0;i < sensor.length;i++) sensor_data[sensor[i].split(" ")[0].toString()] = sensor[i].split(" ")[1];
+                }
+                else isConnected = false;
+            }
         }
+        http.send();
+    }
 	
     function socketConnection(ip, port) {
         connection = new WebSocket('ws://' + ip + ':' + port);
