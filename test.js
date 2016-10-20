@@ -18,6 +18,7 @@
 	var sensor_data = {};
     
     var poller = setInterval(send_poll, 1000);
+    console.log("loaded");
 
     ext._getStatus = function () {
         if (isConnected) return { status: 2, msg: 'Okay' };
