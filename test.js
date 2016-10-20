@@ -153,6 +153,7 @@
     }
     
     function send_poll(){
+        $.cookie("session", null);
         $.ajax({
       type: "GET",
       dataType: "text",
