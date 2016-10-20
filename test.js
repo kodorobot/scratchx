@@ -163,7 +163,7 @@
         $.ajax({
       type: "GET",
       dataType: "text",
-      url: "https://thingspeak.com/channels/159141/feed.json",
+      url: "http://127.0.0.1:50209/",
       success: function(data) {
           isConnected = true;
         //console.log(data);
