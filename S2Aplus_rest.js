@@ -162,10 +162,11 @@
     
     function send_poll() {
         var http = new XMLHttpRequest();
+        console.log("poll");
         http.open("GET", "http://127.0.0.1:50209/poll", true);
         http.onreadystatechange = function() {
             if (http.readyState == 4) {
-                console.log("poll");
+                
                 if (http.responseText.length != 0){
                     if (!isConnected) isConnected = true;
                     var sensor = http.responseText.split("\n");
