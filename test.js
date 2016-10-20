@@ -17,7 +17,14 @@
     var isConnected = false;
 	var sensor_data = {};
     
-    var poller = setInterval(send_poll, 1000);
+    var poller = null;
+    
+    setTimeout("start_poll()", 3000);
+    
+    function start_poll(){
+        poller = setInterval(send_poll, 1000);
+        console.log("ok");
+    }
 
     ext._getStatus = function () {
         if (isConnected) return { status: 2, msg: 'Okay' };
@@ -153,7 +160,6 @@
     }
     
     function send_poll(){
-        $.cookie("session", null);
         $.ajax({
       type: "GET",
       dataType: "text",
