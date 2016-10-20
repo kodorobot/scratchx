@@ -152,22 +152,25 @@
         connection.send(cmd);
     }
     
-    /*function send_poll(){
+    function send_poll(){
         $.ajax({
       type: "GET",
       dataType: "text",
       url: "http://127.0.0.1:50209/poll/",
+      beforeSend:function(){
+                    console.log("before");
+                },
       success: function(data) {
           isConnected = true;
-        console.log(data);
+        //console.log(data);
       },
       error: function(jqxhr, textStatus, error) {
         console.log("Error downloading ISS data");
       }
     });
-        }*/
+        }
         
-    function send_poll() {
+    /*function send_poll() {
         var http = new XMLHttpRequest();
         http.open("GET", "http://127.0.0.1:50209/poll", true);
         http.onreadystatechange = function() {
@@ -187,7 +190,7 @@
 
     console.log("ok");
 
-});
+});*/
 	
     function socketConnection(ip, port) {
         connection = new WebSocket('ws://' + ip + ':' + port);
