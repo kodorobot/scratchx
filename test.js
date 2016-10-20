@@ -187,7 +187,7 @@
 
     console.log("ok");
 
-}
+});
 	
     function socketConnection(ip, port) {
         connection = new WebSocket('ws://' + ip + ':' + port);
