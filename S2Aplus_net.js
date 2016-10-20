@@ -132,6 +132,7 @@
         url = replaceAll(url,"&","%26")
         url = replaceAll(url,"?","%3F")
         url = replaceAll(url,"=","%3D")
+        console.log(url)
         send("/httpPOST/" + url);
 	}
 	
