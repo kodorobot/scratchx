@@ -180,7 +180,6 @@
             if (http.readyState == 4) {
                 if (http.responseText.length != 0){
                     if (!isConnected) isConnected = true;
-                    console.log(http.responseText)
                     var sensor = http.responseText.split("\n");
                     for(var i = 0;i < sensor.length;i++) sensor_data[sensor[i].split(" ")[0].toString()] = sensor[i].split(" ")[1];
                 }
@@ -206,7 +205,7 @@
 			["r", "Digital2", "Digital2"],
 			["r", "Digital3", "Digital3"],
 			["r", "value of sensor %m.ValueOfSensor", "getvalue", "Analog0"],
-			["b", "sensor %m.d2d3 pressed?", "getbool", "Digital2"],
+			["r", "sensor %m.d2d3 pressed?", "getbool", "Digital2"],
 			[" ", "digital %d.digitalOutPin on", "OutPinOn", "13"],
 			[" ", "digital %d.digitalOutPin off", "OutPinOff", "13"],
 			[" ", "analog %d.analogOutPin value %n", "analogOutPin", "9", 255],
