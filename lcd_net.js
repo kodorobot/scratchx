@@ -198,8 +198,8 @@
         send("/opendata/" + value);
     }
     
-    ext.opendata2 = function(value, num){
-        send("/opendata2/" + value + "/" + num);
+    ext.opendata_line = function(value, num){
+        send("/opendata_line/" + value + "/" + num);
     }
     
     ext.writedata = function(input, value){
@@ -274,7 +274,7 @@
             [" ", "右移", "lcd_scrollDisplayRight"],
             ["r", "資料", "datavalue"],
             [" ", "讀取本機資料 從 %s", "opendata", "temp.txt"],
-            [" ", "讀取本機資料 從 %s 第 %n 行", "opendata2", "temp.txt", 1],
+            [" ", "讀取本機資料 從 %s 第 %n 行", "opendata_line", "temp.txt", 1],
             [" ", "儲存資料 %s 在 %s", "writedata", "", "temp.txt"],
             [" ", "附加資料 %s 在 %s", "appenddata", "", "temp.txt"],
             [" ", "開啟檔案 %s", "open_notepad", "temp.txt"],

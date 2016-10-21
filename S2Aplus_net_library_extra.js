@@ -193,8 +193,8 @@
         send("/opendata/" + value);
     }
     
-    ext.opendata2 = function(value, num){
-        send("/opendata2/" + value + "/" + num);
+    ext.opendata_line = function(value, num){
+        send("/opendata_line/" + value + "/" + num);
     }
     
     ext.writedata = function(input, value){
@@ -348,28 +348,28 @@
         send("/Tracker_Sensor5/" + value);
     }
 		
-    ext.forward = function(pin, pin2, pin3, value){
-        send("/forward/" + pin + "/" + pin2 + "/" + pin3 + "/" + value);
+    ext.forward_298 = function(pin, pin2, pin3, value){
+        send("/forward_298/" + pin + "/" + pin2 + "/" + pin3 + "/" + value);
     }
     
-    ext.back = function(pin, pin2, pin3, value){
-        send("/back/" + pin + "/" + pin2 + "/" + pin3 + "/" + value);
+    ext.back_298 = function(pin, pin2, pin3, value){
+        send("/back_298/" + pin + "/" + pin2 + "/" + pin3 + "/" + value);
     }
     
-    ext.stop = function(pin, pin2, pin3){
-        send("/stop/" + pin + "/" + pin2 + "/" + pin3);
+    ext.stop_298 = function(pin, pin2, pin3){
+        send("/stop_298/" + pin + "/" + pin2 + "/" + pin3);
     }
     
-    ext.forward2 = function(pin, pin2, pin3, value){
-        send("/forward/" + pin + "/" + pin2 + "/" + pin3 + "/" + value);
+    ext.forward_293 = function(pin, pin2, pin3, value){
+        send("/forward_293/" + pin + "/" + pin2 + "/" + pin3 + "/" + value);
     }
     
-    ext.back2 = function(pin, pin2, pin3, value){
-        send("/back/" + pin + "/" + pin2 + "/" + pin3 + "/" + value);
+    ext.back_293 = function(pin, pin2, pin3, value){
+        send("/back_293/" + pin + "/" + pin2 + "/" + pin3 + "/" + value);
     }
     
-    ext.stop2 = function(pin, pin2, pin3){
-        send("/stop/" + pin + "/" + pin2 + "/" + pin3);
+    ext.stop_293 = function(pin, pin2, pin3){
+        send("/stop_293/" + pin + "/" + pin2 + "/" + pin3);
     }
     
     function send(cmd) {
@@ -409,7 +409,7 @@
         blocks: [
             [" ", "%m.pin_state : 數位腳位 %n 為 %m.digital_pin_mode", "digital_pin_mode", "啟用", "號碼", "輸入"],
             [" ", "%m.pin_state : 類比腳位(A) %n 為 %m.analog_pin_mode", "analog_pin_mode", "啟用", "號碼", "輸入"],
-            ["", "數位輸出: 設定腳位 %n 為 %m.high_low", "digital_write", "號碼", 0],
+            ["", "數位輸出: 設定腳位 %n 為 %d.high_low", "digital_write", "號碼", 0],
             ["", "模擬類比輸出(PWM): 設定腳位 %n 的值為  %n", "analog_write", "號碼", "數量值"],
             ["", "在腳位 %n 播放音調, 頻率為: %n Hz, 時間為: %n ms", "play_tone", "號碼", 1000, 500],
             ["", "關閉腳位 %n 的音調", "tone_off", "號碼"],
@@ -418,7 +418,7 @@
             ["r", "讀取類比腳位(A) %n 的值", "analog_read", "號碼"],
             ["r", "資料", "datavalue"],
             [" ", "讀取本機資料 從 %s", "opendata", "temp.txt"],
-            [" ", "讀取本機資料 從 %s 第 %n 行", "opendata2", "temp.txt", 1],
+            [" ", "讀取本機資料 從 %s 第 %n 行", "opendata_line", "temp.txt", 1],
             [" ", "儲存資料 %s 在 %s", "writedata", "", "temp.txt"],
             [" ", "附加資料 %s 在 %s", "appenddata", "", "temp.txt"],
             [" ", "開啟檔案 %s", "open_notepad", "temp.txt"],
@@ -472,12 +472,12 @@
             [" ", "循跡感測器3(A) %n", "Tracker_Sensor3", 0],
             [" ", "循跡感測器4(A) %n", "Tracker_Sensor4", 0],
             [" ", "循跡感測器5(A) %n", "Tracker_Sensor5", 0],
-            [" ", "馬達正轉 EnA(B)(PWM)數位腳位: %n In1(3)數位腳位: %n In2(4)數位腳位: %n 速度: %n", "forward", 5, 4, 7, 250],
-            [" ", "馬達倒轉 EnA(B)(PWM)數位腳位: %n In1(3)數位腳位: %n In2(4)數位腳位: %n 速度: %n", "back", 5, 4, 7, 250],
-            [" ", "馬達停止 EnA(B)(PWM)數位腳位: %n In1(3)數位腳位: %n In2(4)數位腳位: %n", "stop", 5, 4, 7],
-            [" ", "馬達正轉 PWMA(B)數位腳位: %n DIRA數位腳位: %n DIRB數位腳位: %n 速度: %n", "back2", 5, 4, 7, 250],
-            [" ", "馬達倒轉 PWMA(B)數位腳位: %n DIRA數位腳位: %n DIRB數位腳位: %n 速度: %n", "forward2", 5, 4, 7, 250],
-            [" ", "馬達停止 PWMA(B)數位腳位: %n DIRA數位腳位: %n DIRB數位腳位: %n", "stop2", 5, 4, 7],
+            [" ", "馬達正轉 EnA(B)(PWM)數位腳位: %n In1(3)數位腳位: %n In2(4)數位腳位: %n 速度: %n", "forward_298", 5, 4, 7, 250],
+            [" ", "馬達倒轉 EnA(B)(PWM)數位腳位: %n In1(3)數位腳位: %n In2(4)數位腳位: %n 速度: %n", "back_298", 5, 4, 7, 250],
+            [" ", "馬達停止 EnA(B)(PWM)數位腳位: %n In1(3)數位腳位: %n In2(4)數位腳位: %n", "stop_298", 5, 4, 7],
+            [" ", "馬達正轉 PWMA(B)數位腳位: %n DIRA數位腳位: %n DIRB數位腳位: %n 速度: %n", "back_293", 5, 4, 7, 250],
+            [" ", "馬達倒轉 PWMA(B)數位腳位: %n DIRA數位腳位: %n DIRB數位腳位: %n 速度: %n", "forward_293", 5, 4, 7, 250],
+            [" ", "馬達停止 PWMA(B)數位腳位: %n DIRA數位腳位: %n DIRB數位腳位: %n", "stop_293", 5, 4, 7],
 		],
         menus: {
             pin_state: ['啟用', '停用'],
