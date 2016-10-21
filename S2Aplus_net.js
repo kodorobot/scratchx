@@ -48,14 +48,15 @@
         send("/digital_pin_mode/" + able + "/" + pin + "/" + mode);
 	}
 	
-    ext.analog_pin_mode = function (able, pin){
+    ext.analog_pin_mode = function (able, pin, mode){
         if(able == "啟用") able = "%E5%95%9F%E7%94%A8";
         else if(able == "停用") able = "%E5%81%9C%E7%94%A8";
-		
+        
+        if(mode == "輸入") mode = "%E8%BC%B8%E5%85%A5";
         else if(mode == "輸入(pull-up)") mode = "pull-up";
         else if(mode == "輸入(pull-down)") mode = "pull-down";
-        
-        send("/analog_pin_mode/" + able + "/" + pin);
+		
+        send("/analog_pin_mode/" + able + "/" + pin + "/" + mode);
 		
 	}
 	
