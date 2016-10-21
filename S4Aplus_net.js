@@ -251,7 +251,6 @@
             if (http.readyState == 4) {
                 if (http.responseText.length != 0){
                     if (!isConnected) isConnected = true;
-                    console.log(http.responseText)
                     var sensor = http.responseText.split("\n");
                     for(var i = 0;i < sensor.length;i++) sensor_data[sensor[i].split(" ")[0].toString()] = sensor[i].split(" ")[1];
                 }
@@ -303,8 +302,7 @@
             [" ", "HTTP POST 資料 %s", "httpPOST", "https://api.thingspeak.com/update?api_key=<api_key>&field1=<value>"],
             [" ", "HTTP GET 資料 類型:%m.type 從 %s", "httpGET_type", "json_thingspeak", "https://thingspeak.com/channels/<channel_ID>/feed.json"],
             [" ", "HTTP GET 資料庫:%m.database channel ID: %s", "httpGET_database", "thingspeak", ""],
-            [" ", "thingspeak雲端資料選擇 欄位:%m.key 第 %n 筆的剖析資料", "jsonDataSelect_thingspeak", "field1", "1"],
-            [" ", "雲端資料選擇 欄位:%s 第 %n 筆的剖析資料", "jsonDataSelect", "field1", "1"],
+            [" ", "雲端資料選擇 欄位:%d.key 第 %n 筆的剖析資料", "jsonDataSelect", "field1", "1"],
             [" ", "Data 剖析可使用的欄位", "keyFind"],
             [" ", "Data 剖析 第 %n 筆的欄位", "keySelect", "1"],
 		],
