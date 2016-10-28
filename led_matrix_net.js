@@ -96,8 +96,12 @@
         return sensor_data["matrix_hex_result"];
 	}
     
-    ext.matrix_initial = function(pin1, pin2, pin3){
-        send("/matrix_initial/" + pin1 + "/" + pin2 + "/" + pin3);
+    ext.matrix_convert_result = function(){
+        return sensor_data["matrix_convert_result"];
+	}
+    
+    ext.matrix_initial = function(pin1, pin2, pin3, mode){
+        send("/matrix_initial/" + pin1 + "/" + pin2 + "/" + pin3 + "/" + mode);
 	}
     
     ext.matrix_print = function(value){
@@ -111,25 +115,29 @@
     ext.matrix_print_hex = function(value){
         send("/matrix_print_hex/" + value);
 	}
+    
+    ext.matrix_shift_out = function(value){
+        send("/matrix_shift_out/" + value);
+    }
         
     ext.matrix_clear = function(){
         send("/matrix_clear/");
 	}
     
-    ext.matrix_scrollDisplayLeft = function(){
-        send("/matrix_scrollDisplayLeft/");
+    ext.matrix_scrollDisplayLeft = function(mode, data){
+        send("/matrix_scrollDisplayLeft/" + mode + "/" + data);
 	}
     
-    ext.matrix_scrollDisplayRight = function(){
-        send("/matrix_scrollDisplayRight/");
+    ext.matrix_scrollDisplayRight = function(mode, data){
+        send("/matrix_scrollDisplayRight/" + mode + "/" + data);
 	}
     
-    ext.matrix_scrollDisplayUp = function(){
-        send("/matrix_scrollDisplayUp/");
+    ext.matrix_scrollDisplayUp = function(mode, data){
+        send("/matrix_scrollDisplayUp/" + mode + "/" + data);
 	}
     
-    ext.matrix_scrollDisplayDown = function(){
-        send("/matrix_scrollDisplayDown/");
+    ext.matrix_scrollDisplayDown = function(mode, data){
+        send("/matrix_scrollDisplayDown/" + mode + "/" + data);
 	}
     
     ext.matrix_print_single = function(){
@@ -143,6 +151,14 @@
     ext.matrix_Intensity = function(value){
         send("/matrix_Intensity/" + value);
 	}
+    
+    ext.bin_to_hex = function(value){
+        send("/bin_to_hex/" + value);
+    }
+    
+    ext.hex_to_bin = function(value){
+        send("/hex_to_bin/" + value);
+    }
     
     ext.s0 = function(){
         return sensor_data["s0"];
