@@ -42,15 +42,15 @@
         send("/l293d_dirb/" + state + "/" + value);
 	}
 	
-    ext.3_color_led_red = function(value){
+    ext.three_color_led_red = function(value){
         send("/3_color_led_red/" + value);
 	}
     
-    ext.3_color_led_green = function(value){
+    ext.three_color_led_green = function(value){
         send("/3_color_led_green/" + value);
 	}
     
-    ext.3_color_led_blue = function(value){
+    ext.three_color_led_blue = function(value){
         send("/3_color_led_blue/" + value);
 	}
     
@@ -149,9 +149,9 @@
             ["r", "距離", "distance"],
             [" ", "L293D A側狀態 %m.state 速度 %n", "l293d_dira", "正轉", 0],
             [" ", "L293D B側狀態 %m.state 速度 %n", "l293d_dirb", "正轉", 0],
-            [" ", "三色LED紅色 值 %n", "3_color_led_red", 0],
-            [" ", "三色LED綠色 值 %n", "3_color_led_green", 0],
-            [" ", "三色LED藍色 值 %n", "3_color_led_blue", 0],
+            [" ", "三色LED紅色 值 %n", "three_color_led_red", 0],
+            [" ", "三色LED綠色 值 %n", "three_color_led_green", 0],
+            [" ", "三色LED藍色 值 %n", "three_color_led_blue", 0],
             [" ", "啟用紅外線", "enableIR"],
             [" ", "停用紅外線", "disableIR"],
             [" ", "蜂鳴器 頻率為: %n Hz, 時間為: %n ms", "play_tone", 1000, 500],
