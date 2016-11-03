@@ -53,6 +53,15 @@
     ext.3_color_led_blue = function(value){
         send("/3_color_led_blue/" + value);
 	}
+    
+    ext.enableIR = function(){
+        send("/enableIR");
+	}
+    
+    ext.disableIR = function(){
+        sensor_data["IR_data"] = "";
+        send("/disableIR");
+	}
 	
     ext.play_tone = function(frequency, time){
         send("/play_tone/" + frequency + "/" + time);
@@ -71,7 +80,27 @@
 	}
     
     ext.IR_data = function(){
-        return sensor_data["IR_data"];
+        var temp = sensor_data["IR_data"];
+        
+        if (temp == "ff629d") temp = "上";
+        else if(temp == "ffa857") temp = "下";
+        else if(temp == "ff22dd") temp = "左";
+        else if(temp == "ffc23d") temp = "右";
+        else if(temp == "ff02fd") temp = "OK";
+        else if(temp == "ff42bd") temp = "*";
+        else if(temp == "ff52ad") temp = "#";
+        else if(temp == "ff6897") temp = "1";
+        else if(temp == "ff9867") temp = "2";
+        else if(temp == "ffb04f") temp = "3";
+        else if(temp == "ff30cf") temp = "4";
+        else if(temp == "ff18e7") temp = "5";
+        else if(temp == "ff7a85") temp = "6";
+        else if(temp == "ff10ef") temp = "7";
+        else if(temp == "ff38c7") temp = "8";
+        else if(temp == "ff5aa5") temp = "9";
+        else if(temp == "ff4ab5") temp = "0";
+        
+        return temp;
 	}
     
     ext.distance = function(){
@@ -224,6 +253,8 @@
             [" ", "三色LED紅色 值 %n", "3_color_led_red", 0],
             [" ", "三色LED綠色 值 %n", "3_color_led_green", 0],
             [" ", "三色LED藍色 值 %n", "3_color_led_blue", 0],
+            [" ", "啟用紅外線", "enableIR"],
+            [" ", "停用紅外線", "disableIR"],
             [" ", "蜂鳴器 頻率為: %n Hz, 時間為: %n ms", "play_tone", 1000, 500],
             ["r", "資料", "datavalue"],
             [" ", "讀取本機資料 從 %s", "opendata", "temp.txt"],
