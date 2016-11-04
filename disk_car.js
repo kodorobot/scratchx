@@ -54,6 +54,18 @@
         send("/3_color_led_blue/" + value);
 	}
     
+    ext.three_color_led_red2 = function(value){
+        send("/3_color_led_red2/" + value);
+	}
+    
+    ext.three_color_led_green2 = function(value){
+        send("/3_color_led_green2/" + value);
+	}
+    
+    ext.three_color_led_blue2 = function(value){
+        send("/3_color_led_blue2/" + value);
+	}
+    
     ext.enableIR = function(){
         send("/enableIR");
 	}
@@ -149,9 +161,12 @@
             ["r", "距離", "distance"],
             [" ", "L293D A側D4 狀態 %m.state 速度D5 %n", "l293d_dira", "正轉", 0],
             [" ", "L293D B側D7 狀態 %m.state 速度D6 %n", "l293d_dirb", "正轉", 0],
-            [" ", "三色LED紅色D9 值 %n", "three_color_led_red", 0],
-            [" ", "三色LED綠色D10 值 %n", "three_color_led_green", 0],
-            [" ", "三色LED藍色D11 值 %n", "three_color_led_blue", 0],
+            [" ", "三色LED紅色D9 類比輸出 %n", "three_color_led_red", 0],
+            [" ", "三色LED綠色D10 類比輸出 %n", "three_color_led_green", 0],
+            [" ", "三色LED藍色D11 類比輸出 %n", "three_color_led_blue", 0],
+            [" ", "三色LED紅色D9 數位輸出 %d.high_low", "three_color_led_red2", "0"],
+            [" ", "三色LED綠色D10 數位輸出 %d.high_low", "three_color_led_green2", "0"],
+            [" ", "三色LED藍色D11 數位輸出 %d.high_low", "three_color_led_blue2", "0"],
             [" ", "啟用紅外線", "enableIR"],
             [" ", "停用紅外線", "disableIR"],
             [" ", "蜂鳴器A0 頻率為: %n Hz, 時間為: %n ms", "play_tone", 1000, 500],
