@@ -276,17 +276,17 @@
 
     var descriptor = {
         blocks: [
-            [" ", "%m.pin_state : 數位腳位 %n 為 %m.digital_pin_mode", "digital_pin_mode", "啟用", "號碼", "輸入"],
-            [" ", "%m.pin_state : 類比腳位(A) %n 為 %m.analog_pin_mode", "analog_pin_mode", "啟用", "號碼", "輸入"],
-            ["", "數位輸出: 設定腳位 %n 為 %d.high_low", "digital_write", "號碼", 0],
-            ["", "模擬類比輸出(PWM): 設定腳位 %n 的值為  %n", "analog_write", "號碼", "數量值"],
-            ["", "在腳位 %n 播放音調, 頻率為: %n Hz, 時間為: %n ms", "play_tone", "號碼", 1000, 500],
-            ["", "關閉腳位 %n 的音調", "tone_off", "號碼"],
-            ["", "設定第 %n 腳位為伺服機輸出 轉動角度為 %n", "set_servo_position", "號碼", 90],
-            ["r", "讀取數位腳位 %n 的值", "digital_read", "號碼"],
-            ["r", "讀取類比腳位(A) %n 的值", "analog_read", "號碼"],
+            [" ", "%m.pin_state : 數位腳位 %d.digital_pin 為 %m.digital_pin_mode", "digital_pin_mode", "啟用", "號碼", "輸入"],
+            [" ", "%m.pin_state : 類比腳位(A) %d.analog_pin 為 %m.analog_pin_mode", "analog_pin_mode", "啟用", "號碼", "輸入"],
+            ["", "數位輸出: 設定腳位 %d.digital_pin 為 %d.high_low", "digital_write", "號碼", 0],
+            ["", "模擬類比輸出(PWM): 設定腳位 %d.pwm_pin 的值為  %n", "analog_write", "號碼", "數量值"],
+            ["", "在腳位 %d.digital_pin 播放音調, 頻率為: %n Hz, 時間為: %n ms", "play_tone", "號碼", 1000, 500],
+            ["", "關閉腳位 %d.digital_pin 的音調", "tone_off", "號碼"],
+            ["", "設定第 %d.digital_pin 腳位為伺服機輸出 轉動角度為 %n", "set_servo_position", "號碼", 90],
+            ["r", "讀取數位腳位 %d.digital_pin 的值", "digital_read", "號碼"],
+            ["r", "讀取類比腳位(A) %d.analog_pin 的值", "analog_read", "號碼"],
             [" ", "SDA接A4,SCL接A5", "lcd_initial"],
-            [" ", "文字(英,數): %s 位置 行: %n 列: %n", "lcd_print_cover", "", 1, 1],
+            [" ", "文字(英,數): %s 位置 列: %n 行: %n", "lcd_print_cover", "", 1, 1],
             [" ", "開燈", "back_light_on"],
             [" ", "關燈", "back_light_off"],
             [" ", "清空文字", "lcd_clear"],
@@ -328,6 +328,9 @@
             digital_pin_mode: ['輸入',"輸入(pull-up)","輸入(pull-down)", '輸出', 'PWM', '伺服機', '音調'],
             analog_pin_mode: ["輸入", "輸入(pull-up)", "輸入(pull-down)"],
             high_low: ["0", "1"],
+            digital_pin: ["2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "A0", "A1", "A2", "A3", "A4", "A5"],
+            analog_pin: ["0", "1", "2", "3", "4", "5"],
+            pwm_pin: ["3", "5", "6", "9", "10", "11"],
     },
         url: 'https://kodorobot.github.io/scratchx/'
   };
