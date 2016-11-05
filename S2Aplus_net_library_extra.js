@@ -361,16 +361,16 @@
         send("/stop_298/" + pin + "/" + pin2 + "/" + pin3);
     }
     
-    ext.forward_293 = function(pin, pin2, pin3, value){
-        send("/forward_293/" + pin + "/" + pin2 + "/" + pin3 + "/" + value);
+    ext.forward_293 = function(pin, pin2, value){
+        send("/forward_293/" + pin + "/" + pin2 + "/" + value);
     }
     
-    ext.back_293 = function(pin, pin2, pin3, value){
-        send("/back_293/" + pin + "/" + pin2 + "/" + pin3 + "/" + value);
+    ext.back_293 = function(pin, pin2, value){
+        send("/back_293/" + pin + "/" + pin2 + "/" + value);
     }
     
-    ext.stop_293 = function(pin, pin2, pin3){
-        send("/stop_293/" + pin + "/" + pin2 + "/" + pin3);
+    ext.stop_293 = function(pin){
+        send("/stop_293/" + pin);
     }
     
     function send(cmd) {
@@ -475,9 +475,9 @@
             [" ", "馬達正轉 EnA(B)(PWM)數位腳位: %n In1(3)數位腳位: %n In2(4)數位腳位: %n 速度: %n", "forward_298", 5, 4, 7, 250],
             [" ", "馬達倒轉 EnA(B)(PWM)數位腳位: %n In1(3)數位腳位: %n In2(4)數位腳位: %n 速度: %n", "back_298", 5, 4, 7, 250],
             [" ", "馬達停止 EnA(B)(PWM)數位腳位: %n In1(3)數位腳位: %n In2(4)數位腳位: %n", "stop_298", 5, 4, 7],
-            [" ", "馬達正轉 PWMA(B)數位腳位: %n DIRA數位腳位: %n DIRB數位腳位: %n 速度: %n", "back_293", 5, 4, 7, 250],
-            [" ", "馬達倒轉 PWMA(B)數位腳位: %n DIRA數位腳位: %n DIRB數位腳位: %n 速度: %n", "forward_293", 5, 4, 7, 250],
-            [" ", "馬達停止 PWMA(B)數位腳位: %n DIRA數位腳位: %n DIRB數位腳位: %n", "stop_293", 5, 4, 7],
+            [" ", "馬達正轉 PWMA(B)數位腳位: %n DIRA(B)數位腳位: %n 速度: %n", "back_293", 5, 4, 250],
+            [" ", "馬達倒轉 PWMA(B)數位腳位: %n DIRA(B)數位腳位: %n 速度: %n", "forward_293", 5, 4, 250],
+            [" ", "馬達停止 PWMA(B)數位腳位: %n ", "stop_293", 5],
 		],
         menus: {
             pin_state: ['啟用', '停用'],
