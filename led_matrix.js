@@ -226,7 +226,7 @@
         menus: {
         intense: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],
         type: ["1x1", "2x1", "4x1", "1x2", "2x2", "1x4"],
-        shift_type: ["預設", "連續", "自訂"],
+        shift_type: ["預設", "連續", "位元組傳遞積木"],
         pin_state: ['啟用', '停用'],
         digital_pin_mode: ['輸入',"輸入(pull-up)","輸入(pull-down)", '輸出', 'PWM', '伺服機', '音調'],
         analog_pin_mode: ["輸入", "輸入(pull-up)", "輸入(pull-down)"],
