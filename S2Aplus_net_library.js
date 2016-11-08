@@ -321,8 +321,8 @@
             ["r", "HC-SR04 距離", "distance_HC_SR04"],
             [" ", "距離感測器HC-SR04 trig %n echo(A) %n", "distance", 10, 0],
             ["r", "紅外線資料", "IR_data"],
-            [" ", "發射訊號 種類:%m.type %s (uno:D3 mega:D11)", "IR_send", "玩具", ""],
-            [" ", "紅外線接收器 種類:%m.type 秒數:%n (D2)", "IR_receive", "玩具", 10],
+            [" ", "發射訊號 種類:%m.type %s (uno:D3 mega:D11)", "IR_send", "30個以內", ""],
+            [" ", "紅外線接收器 種類:%m.type 秒數:%n (D2)", "IR_receive", "30個以內", 10],
 		],
         menus: {
             pin_state: ['啟用', '停用'],
@@ -335,7 +335,7 @@
             type: ["raw", "json_thingspeak", "json_opendata"],
             key: ["field1", "field2"],
             database: ["thingspeak"],
-            type: ["玩具", "冷氣"],
+            type: ["30個以內", "冷氣"],
     },
         url: 'https://kodorobot.github.io/scratchx/'
   };
