@@ -282,7 +282,7 @@
             [" ", "HTTP GET 資料 類型:%m.type 從 %s", "httpGET_type", "json_thingspeak", "https://thingspeak.com/channels/<channel_ID>/feed.json?results=8000"],
             [" ", "HTTP GET 資料庫:%m.database channel ID: %s", "httpGET_database", "thingspeak", ""],
             [" ", "雲端資料選擇 欄位:%d.key 第 %n 筆的剖析資料", "jsonDataSelect", "field1", "1"],
-            [" ", "剖析可使用欄", "keyFind"],
+            [" ", "剖析可使用欄位", "keyFind"],
             [" ", "選擇第 %n 筆欄位", "keySelect", "1"],
 		],
         menus: {
