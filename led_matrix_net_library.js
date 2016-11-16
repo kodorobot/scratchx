@@ -177,7 +177,10 @@
 	}
 	
     ext.HTTPvalue = function(){
-        return sensor_data["HTTPvalue"];
+        if(sensor_data["HTTPvalue"] == "true")
+            return true;
+        else
+            return false;
 	}
     
     ext.HTTPvalue_number = function(){
@@ -221,6 +224,10 @@
     ext.jsonDataSelect = function(type, value){
         send("/jsonDataSelect/" + type + "/" + value);
 	}
+    
+    ext.jsonDataSelect_section = function(type, value){
+        send("/jsonDataSelect_section/" + type + "/" + value);
+	}
 	
     ext.keyFind = function(){
         send("/keyFind/");
@@ -232,6 +239,10 @@
     
     ext.datavalue = function(){
         return sensor_data["datavalue"];
+    }
+    
+    ext.datavalue_line = function(){
+        return sensor_data["datavalue_line"];
     }
     
     ext.opendata = function(value){
@@ -343,6 +354,7 @@
             [" ", "2進位轉16進位 %s", "bin_to_hex", ""],
             [" ", "16進位轉2進位 %s", "hex_to_bin", ""],
             ["r", "資料", "datavalue"],
+            ["r", "資料行數", "datavalue_line"],
             [" ", "讀取本機資料 從 %s", "opendata", "temp.txt"],
             [" ", "讀取本機資料 從 %s 第 %n 行", "opendata_line", "temp.txt", 1],
             [" ", "儲存資料 %s 在 %s", "writedata", "", "temp.txt"],
@@ -353,15 +365,16 @@
             [" ", "send %s value %n", "sensor_update", "temp", 255],
             [" ", "向ip: %s 傳送變數 %s 值 %s", "sensor_update_scratch", "127.0.0.1:50209", "s0", 0],
             [" ", "開啟網頁 %s", "openBrowser", "http://www.kodorobot.com"],
-            ["r", "雲端資料", "HTTPvalue"],
+            ["b", "資料庫連接", "HTTPvalue"],
+            ["r", "雲端資料", "HTTPvalue_processed"],
             ["r", "雲端資料筆數", "HTTPvalue_number"],
-            ["r", "剖析資料", "HTTPvalue_processed"],
             ["r", "可使用的欄位", "HTTP_allkeyValue"],
             ["r", "選擇的欄位", "HTTP_keyValue"],
             [" ", "HTTP POST 資料 %s", "httpPOST", "https://api.thingspeak.com/update?api_key=<api_key>&field1=<value>"],
             [" ", "HTTP GET 資料 類型:%m.type2 從 %s", "httpGET_type", "json_thingspeak", "https://thingspeak.com/channels/<channel_ID>/feed.json?results=8000"],
             [" ", "HTTP GET 資料庫:%m.database channel ID: %s", "httpGET_database", "thingspeak", ""],
-            [" ", "雲端資料選擇 欄位:%d.key 第 %n 筆的剖析資料", "jsonDataSelect", "field1", "1"],
+            [" ", "雲端資料選擇 欄位:%s 第 %n 筆的剖析資料", "jsonDataSelect", "field1", "1"],
+            [" ", "選擇 第 %n 筆到第 %n 筆的剖析資料", "jsonDataSelect_section", "1", "10"],
             [" ", "剖析可使用欄位", "keyFind"],
             [" ", "選擇第 %n 筆欄位", "keySelect", "1"],
             ["r", "DHT11 濕度(%)", "humidity_dht11"],
