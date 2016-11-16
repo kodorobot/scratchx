@@ -124,7 +124,10 @@
 	}
 	
     ext.HTTPvalue = function(){
-        return sensor_data["HTTPvalue"];
+        if(sensor_data["HTTPvalue"] == "true")
+            return true;
+        else
+            return false;
 	}
     
     ext.HTTPvalue_number = function(){
