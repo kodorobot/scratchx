@@ -328,7 +328,7 @@
             bodyPart: ["head", "shoulder", "elbow", "hand"],
             coordinate: ["x", "y", "z"],
             analogOutPin: ["9", "6", "5"],
-            type: ["raw", "json_thingspeak", "json_opendata"],
+            type: ["raw", "json_thingspeak", "json_opendata", "json_google"],
             database: ["thingspeak"],
 
     },

@@ -309,7 +309,7 @@
 		],
         menus: {
             high_low: ["0", "1"],
-            type: ["raw", "json_thingspeak", "json_opendata"],
+            type: ["raw", "json_thingspeak", "json_opendata", "json_google"],
             key: ["field1", "field2"],
             database: ["thingspeak"],
     },

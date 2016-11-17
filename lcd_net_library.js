@@ -335,7 +335,7 @@
             [" ", "距離感測器HC-SR04 trig %n echo(A) %n", "distance", 10, 0],
 		],
         menus: {
-            type: ["raw", "json_thingspeak", "json_opendata"],
+            type: ["raw", "json_thingspeak", "json_opendata", "json_google"],
             key: ["field1", "field2"],
             database: ["thingspeak"],
             pin_state: ['啟用', '停用'],

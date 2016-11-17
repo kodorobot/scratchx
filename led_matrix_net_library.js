@@ -388,7 +388,7 @@
             intense: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],
             type: ["1x1", "2x1", "4x1", "1x2", "2x2", "1x4"],
             shift_type: ["預設", "連續", "位元組傳遞積木"],
-            type2: ["raw", "json_thingspeak", "json_opendata"],
+            type2: ["raw", "json_thingspeak", "json_opendata", "json_google"],
             key: ["field1", "field2"],
             database: ["thingspeak"],
             pin_state: ['啟用', '停用'],

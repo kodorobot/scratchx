@@ -309,7 +309,7 @@
             [" ", "選擇第 %n 筆欄位", "keySelect", "1"],
 		],
         menus: {
-            type: ["raw", "json_thingspeak", "json_opendata"],
+            type: ["raw", "json_thingspeak", "json_opendata", "json_google"],
             key: ["field1", "field2"],
             database: ["thingspeak"],
             pin_state: ['啟用', '停用'],
