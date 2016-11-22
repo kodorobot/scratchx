@@ -91,6 +91,10 @@
         var value = sensor_data[pin];
         return value;
 	}
+    
+    ext.shiftout = function(pin, pin, type, value){
+        send("/shiftout/" + pin + "/" + pin + "/" + type + "/" + value);
+    }
 	
     ext.s0 = function(){
         return sensor_data["s0"];
@@ -304,6 +308,7 @@
             ["", "設定第 %d.digital_pin 腳位為伺服機輸出 轉動角度為 %n", "set_servo_position", "號碼", 90],
             ["r", "讀取數位腳位 %d.digital_pin 的值", "digital_read", "號碼"],
             ["r", "讀取類比腳位(A) %d.analog_pin 的值", "analog_read", "號碼"],
+            ["", "shiftout Din接(D) %n ,Clk接(D) %n ,資料格式: %m.shiftout_type ,資料: %n", "shiftout", "號碼", "號碼", "MSBFIRST", 0],
             ["r", "資料", "datavalue"],
             ["r", "資料行數", "datavalue_line"],
             [" ", "讀取本機資料 從 %s", "opendata", "temp.txt"],
@@ -351,6 +356,7 @@
             database: ["thingspeak"],
             type2: ["30個以內", "冷氣"],
             type3: ["°C", "°F"],
+            shiftout_type: ["MSBFIRST", "LSBFIRST"],
     },
         url: 'https://kodorobot.github.io/scratchx/'
   };

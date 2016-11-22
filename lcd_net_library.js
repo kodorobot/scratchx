@@ -92,6 +92,10 @@
         return value;
 	}
     
+    ext.shiftout = function(pin, pin, type, value){
+        send("/shiftout/" + pin + "/" + pin + "/" + type + "/" + value);
+    }
+    
     ext.lcd_initial = function(){
         send("/lcd_initial/");
 	}
@@ -296,6 +300,7 @@
             ["", "設定第 %d.digital_pin 腳位為伺服機輸出 轉動角度為 %n", "set_servo_position", "號碼", 90],
             ["r", "讀取數位腳位 %d.digital_pin 的值", "digital_read", "號碼"],
             ["r", "讀取類比腳位(A) %d.analog_pin 的值", "analog_read", "號碼"],
+            ["", "shiftout Din接(D) %n ,Clk接(D) %n ,資料格式: %m.shiftout_type ,資料: %n", "shiftout", "號碼", "號碼", "MSBFIRST", 0],
             [" ", "SDA接A4,SCL接A5", "lcd_initial"],
             [" ", "文字(英,數): %s 位置 列: %n 行: %n", "lcd_print_cover", "", 1, 1],
             [" ", "開燈", "back_light_on"],
@@ -346,6 +351,7 @@
             analog_pin: ["0", "1", "2", "3", "4", "5"],
             pwm_pin: ["3", "5", "6", "9", "10", "11"],
             type2: ["°C", "°F"],
+            shiftout_type: ["MSBFIRST", "LSBFIRST"],
     },
         url: 'https://kodorobot.github.io/scratchx/'
   };
