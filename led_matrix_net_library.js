@@ -100,8 +100,16 @@
         return sensor_data["matrix_hex_result"];
 	}
     
-    ext.matrix_convert_result = function(){
-        return sensor_data["matrix_convert_result"];
+    ext.matrix_convert_result_2 = function(){
+        return sensor_data["matrix_convert_result_2"];
+	}
+    
+    ext.matrix_convert_result_10 = function(){
+        return sensor_data["matrix_convert_result_10"];
+	}
+    
+    ext.matrix_convert_result_16 = function(){
+        return sensor_data["matrix_convert_result_16"];
 	}
     
     ext.matrix_initial = function(pin1, pin2, pin3, mode){
@@ -116,12 +124,8 @@
         send("/matrix_print_scroll/" + value + "/" + delay);
 	}
 		
-    ext.matrix_print_hex = function(value){
-        send("/matrix_print_hex/" + value);
-	}
-    
-    ext.matrix_shift_out = function(value){
-        send("/matrix_shift_out/" + value);
+    ext.value_convert = function(value, data){
+        send("/value_convert/" + value + "/" + data);
     }
         
     ext.matrix_clear = function(){
@@ -342,7 +346,9 @@
             ["r", "讀取類比腳位(A) %d.analog_pin 的值", "analog_read", "號碼"],
             ["", "shiftout Din接(D) %n ,Clk接(D) %n ,資料格式: %m.shiftout_type ,資料: %n", "shiftout", "號碼", "號碼", "MSBFIRST", 0],
 			["r", "圖形的16位元碼", "matrix_hex_result"],
-            ["r", "轉換結果", "matrix_convert_result"],
+            ["r", "2進位值", "matrix_convert_result_2"],
+            ["r", "10進位值", "matrix_convert_result_10"],
+            ["r", "16進位值", "matrix_convert_result_16"],
             [" ", "Din接(D) %n ,CS接(D) %n ,CLK接(D) %n 類型: %m.type", "matrix_initial", 10, 11, 12, "1x1"],
             [" ", "顯示文字(英,數): %s", "matrix_print", ""],
             [" ", "跑馬燈(英,數): %s 延遲: %n (ms)", "matrix_print_scroll", "", 100],
@@ -356,8 +362,7 @@
             [" ", "自訂圖形", "matrix_print_single"],
             [" ", "顯示自訂圖形第 %n 張", "show_matrix_print_single", "1"],
             [" ", "亮度 %d.intense", "matrix_Intensity", 1],
-            [" ", "2進位轉16進位 %s", "bin_to_hex", ""],
-            [" ", "16進位轉2進位 %s", "hex_to_bin", ""],
+            [" ", "進位轉換 進位: %m.base 值: %s ", "value_convert", "10", "0"],
             ["r", "資料", "datavalue"],
             ["r", "資料行數", "datavalue_line"],
             [" ", "讀取本機資料 從 %s", "opendata", "temp.txt"],
@@ -405,7 +410,7 @@
             pwm_pin: ["3", "5", "6", "9", "10", "11"],
             type3: ["°C", "°F"],
             shiftout_type: ["MSBFIRST", "LSBFIRST"],
-
+            base: ["2", "10", "16"],
     },
         url: 'https://kodorobot.github.io/scratchx/'
   };
