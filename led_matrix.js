@@ -112,8 +112,8 @@
         return sensor_data["matrix_convert_result_16"];
 	}
     
-    ext.matrix_initial = function(pin1, pin2, pin3, mode){
-        send("/matrix_initial/" + pin1 + "/" + pin2 + "/" + pin3 + "/" + mode);
+    ext.matrix_initial = function(pin1, pin2, pin3, mode, value){
+        send("/matrix_initial/" + pin1 + "/" + pin2 + "/" + pin3 + "/" + mode + "/" + value);
 	}
     
     ext.matrix_print = function(value){
@@ -217,7 +217,7 @@
             ["r", "2進位值", "matrix_convert_result_2"],
             ["r", "10進位值", "matrix_convert_result_10"],
             ["r", "16進位值", "matrix_convert_result_16"],
-            [" ", "Din接(D) %n ,CS接(D) %n ,CLK接(D) %n 類型: %m.type", "matrix_initial", 10, 11, 12, "1x1"],
+            [" ", "Din接(D) %n ,CS接(D) %n ,CLK接(D) %n 類型: %m.type 模式: %m.transpose", "matrix_initial", 10, 11, 12, "1x1", "正常"],
             [" ", "顯示文字(英,數): %s", "matrix_print", ""],
             [" ", "跑馬燈(英,數): %s 延遲: %n (ms)", "matrix_print_scroll", "", 100],
             [" ", "顯示圖形(16位元碼) %s", "matrix_print_hex", ""],
@@ -246,6 +246,7 @@
             pwm_pin: ["3", "5", "6", "9", "10", "11"],
             shiftout_type: ["MSBFIRST", "LSBFIRST"],
             base: ["2", "10", "16"],
+            transpose: ["正常", "轉置"]
     },
         url: 'https://kodorobot.github.io/scratchx/'
   };
