@@ -110,11 +110,15 @@
 	
     ext.httpPOST = function(url){
         url = replaceAll(url,"/","%2F")
+        url = replaceAll(url,"&","%26")
+        url = replaceAll(url,"?","%3F")
         send("/httpPOST/" + url);
 	}
 	
     ext.httpGET = function(url){
         url = replaceAll(url,"/","%2F")
+        url = replaceAll(url,"&","%26")
+        url = replaceAll(url,"?","%3F")
         send("/httpGET/" + url);
 	}
 	
@@ -165,7 +169,7 @@
     }
 	
     function replaceAll(str, find, replace) {
-        while(str.search(find) != -1) str = str.replace(find, replace);
+        while(str.indexOf(find) >= 0) { str = str.replace(find, replace); }
     return str;
 }
 
@@ -174,7 +178,7 @@
             [' ', '連接 Transformer', 'connect'],
             [" ", "%m.pin_state : 數位腳位 %n 為 %m.digital_pin_mode", "digital_pin_mode", "啟用", "號碼", "輸入"],
             [" ", "%m.pin_state : 類比腳位(A) %n 為 %m.analog_pin_mode", "analog_pin_mode", "啟用", "號碼", "輸入"],
-            ["", "數位輸出: 設定腳位 %n 為 %m.high_low", "digital_write", "號碼", 0],
+            ["", "數位輸出: 設定腳位 %n 為 %d.high_low", "digital_write", "號碼", 0],
             ["", "模擬類比輸出(PWM): 設定腳位 %n 的值為  %n", "analog_write", "號碼", "數量值"],
             ["", "在腳位 %n 播放音調, 頻率為: %n Hz, 時間為: %n ms", "play_tone", "號碼", 1000, 500],
             ["", "關閉腳位 %n 的音調", "tone_off", "號碼"],
@@ -183,8 +187,8 @@
             ["r", "讀取類比腳位(A) %n 的值", "analog_read", "號碼"],
             ["r", "virtual sensor s0",  "s0"],
             ["r", "virtual sensor s1",  "s1"],
-            ["w", "向ip: %s 傳送變數 %s 值 %s", "sensor_update_scratch", "127.0.0.1:50209", "s0", 0],
-            ["w", "send %s value %n", "sensor_update", "temp", 255],
+            [" ", "send %s value %n", "sensor_update", "temp", 255],
+            [" ", "向ip: %s 傳送變數 %s 值 %s", "sensor_update_scratch", "127.0.0.1:50209", "s0", 0],
             ["r", "HTTP GET 資料", "HTTPvalue"],
             [" ", "HTTP POST 資料 %s", "httpPOST", ""],
             [" ", "HTTP GET 資料 從 %s", "httpGET", ""],
@@ -192,8 +196,8 @@
             [" ", "錄音 %n 秒", "record", 3],
             [" ", "%s 轉語音(中文)", "textovoice_tw", "文字"],
             [" ", "%s 轉語音(英文)", "textovoice_en", "word"],
-            [" ", "語音速度 %m.speed", "voiceSpeed", 0],
-            [" ", "語音音量 %m.volume", "voiceVolume", 100]
+            [" ", "語音速度 %d.speed", "voiceSpeed", 0],
+            [" ", "語音音量 %d.volume", "voiceVolume", 100]
 		],
         menus: {
             pin_state: ['啟用', '停用'],

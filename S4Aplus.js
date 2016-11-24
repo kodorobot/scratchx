@@ -125,11 +125,15 @@
 	
     ext.httpPOST = function(url){
         url = replaceAll(url,"/","%2F")
+        url = replaceAll(url,"&","%26")
+        url = replaceAll(url,"?","%3F")
         send("/httpPOST/" + url);
 	}
 	
     ext.httpGET = function(url){
         url = replaceAll(url,"/","%2F")
+        url = replaceAll(url,"&","%26")
+        url = replaceAll(url,"?","%3F")
         send("/httpGET/" + url);
 	}
 	
@@ -180,7 +184,7 @@
     }
 	
     function replaceAll(str, find, replace) {
-        while(str.search(find) != -1) str = str.replace(find, replace);
+        while(str.indexOf(find) >= 0) { str = str.replace(find, replace); }
     return str;
 	}
 
@@ -197,16 +201,16 @@
 			["r", "Digital3", "Digital3"],
 			["r", "value of sensor %m.ValueOfSensor", "getvalue", "Analog0"],
 			["b", "sensor %m.d2d3 pressed?", "getbool", "Digital2"],
-			["w", "digital %m.digitalOutPin on", "OutPinOn", "13"],
-			["w", "digital %m.digitalOutPin off", "OutPinOff", "13"],
-			["w", "analog %m.analogOutPin value %n", "analogOutPin", "9", 255],
-			["w", "motor  %m.MotorPin off", "motoroff", "8"],
-			["w", "motor  %m.MotorPin direction %m.MotorDirection", "MotorDirection", "8", "clockwise"],
-			["w", "motor  %m.MotorPin angle %n", "motorangle", "8", 180],
+			[" ", "digital %d.digitalOutPin on", "OutPinOn", "13"],
+			[" ", "digital %d.digitalOutPin off", "OutPinOff", "13"],
+			[" ", "analog %d.analogOutPin value %n", "analogOutPin", "9", 255],
+			[" ", "motor  %d.MotorPin off", "motoroff", "8"],
+			[" ", "motor  %d.MotorPin direction %m.MotorDirection", "MotorDirection", "8", "clockwise"],
+			[" ", "motor  %d.MotorPin angle %n", "motorangle", "8", 180],
 			["r", "virtual sensor s0",  "s0"],
             ["r", "virtual sensor s1",  "s1"],
-            ["w", "向ip: %s 傳送變數 %s 值 %s", "sensor_update_scratch", "127.0.0.1:50209", "s0", 0],
-            ["w", "send %s value %n", "sensor_update", "temp", 255],
+            ["", "send %s value %n", "sensor_update", "temp", 255],
+            ["", "向ip: %s 傳送變數 %s 值 %s", "sensor_update_scratch", "127.0.0.1:50209", "s0", 0],
             ["r", "HTTP GET 資料", "HTTPvalue"],
             [" ", "HTTP POST 資料 %s", "httpPOST", ""],
             [" ", "HTTP GET 資料 從 %s", "httpGET", ""],
@@ -214,8 +218,8 @@
             [" ", "錄音 %n 秒", "record", 3],
             [" ", "%s 轉語音(中文)", "textovoice_tw", "文字"],
             [" ", "%s 轉語音(英文)", "textovoice_en", "word"],
-            [" ", "語音速度 %m.speed", "voiceSpeed", 0],
-            [" ", "語音音量 %m.volume", "voiceVolume", 100]
+            [" ", "語音速度 %d.speed", "voiceSpeed", 0],
+            [" ", "語音音量 %d.volume", "voiceVolume", 100]
 		],
         menus: {
             d2d3: ["Digital2", "Digital3"],
