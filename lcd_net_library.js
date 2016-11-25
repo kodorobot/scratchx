@@ -155,6 +155,10 @@
         return sensor_data["HTTPvalue_processed"];
 	}
     
+    ext.HTTPvalue_last = function(){
+        return sensor_data["HTTPvalue_last"];
+	}
+    
     ext.HTTP_allkeyValue = function(){
         return sensor_data["HTTP_allkeyValue"];
 	}
@@ -323,6 +327,7 @@
             ["b", "資料庫連接", "HTTPvalue"],
             ["r", "雲端資料", "HTTPvalue_processed"],
             ["r", "雲端資料筆數", "HTTPvalue_number"],
+            ["r", "最後一筆", "HTTPvalue_last"],
             ["r", "可使用的欄位", "HTTP_allkeyValue"],
             ["r", "選擇的欄位", "HTTP_keyValue"],
             [" ", "HTTP POST 資料 %s", "httpPOST", "https://api.thingspeak.com/update?api_key=<api_key>&field1=<value>"],
