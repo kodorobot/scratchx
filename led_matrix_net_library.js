@@ -397,6 +397,7 @@
             ["r", "DHT11 溫度 類型: %m.type3", "temperature_dht11", "°C"],
             [" ", "DHT11 溫濕度感測器(D) %n", "dht11", 2],
             ["r", "HC-SR04 距離", "distance_HC_SR04"],
+            ["r", "來回時間(微秒)", "time_HC_SR04"],
             [" ", "距離感測器HC-SR04 trig %n echo(A) %n", "distance", 10, 0],
 		],
         menus: {
