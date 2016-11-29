@@ -240,7 +240,7 @@
         return sensor_data["humidity_dht11"];
     }
     
-    ext.temperature_dht11_°C = function(){
+    ext.temperature_dht11_C = function(){
         return sensor_data["temperature_dht11_°C"];
     }
     
@@ -472,7 +472,7 @@
             [" ", "剖析可使用欄位", "keyFind"],
             [" ", "選擇第 %n 筆欄位", "keySelect", "1"],
             ["r", "DHT11 濕度(%)", "humidity_dht11"],
-            ["r", "DHT11 溫度(°C)", "temperature_dht11_°C"],
+            ["r", "DHT11 溫度(°C)", "temperature_dht11_C"],
             ["r", "DHT11 溫度 類型: %m.type3", "temperature_dht11", "°C"],
             [" ", "DHT11 溫濕度感測器(D) %n", "dht11", 2],
             ["r", "HC-SR04 距離", "distance_HC_SR04"],
