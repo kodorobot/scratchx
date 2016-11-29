@@ -288,8 +288,13 @@
         return sensor_data["humidity_dht11"];
     }
     
-    ext.temperature_dht11 = function(){
-        return sensor_data["temperature_dht11"];
+    ext.temperature_dht11_°C = function(){
+        return sensor_data["temperature_dht11_°C"];
+    }
+    
+    ext.temperature_dht11 = function(type){
+        var type = "temperature_dht11/" + type;
+        return sensor_data[type];
     }
     
     ext.dht11 = function(value){
