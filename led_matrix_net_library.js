@@ -301,7 +301,7 @@
     }
     
     ext.time_HC_SR04 = function(){
-        return sensor_data["time_HC_SR04"];
+        return sensor_data["time_HC-SR04"];
     }
     
     ext.distance = function(pin, pin2){
