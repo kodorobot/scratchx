@@ -58,7 +58,9 @@
 	ext.getbool = function(pin){
 		//var pin = "getbool/" + pin;
 		var value = sensor_data[pin];
-		return value;
+		if (value == "true")
+            return true;
+        else return false;
 	}
 	
 	ext.getvalue = function(pin){
@@ -200,7 +202,7 @@
 			["r", "Digital2", "Digital2"],
 			["r", "Digital3", "Digital3"],
 			["r", "value of sensor %m.ValueOfSensor", "getvalue", "Analog0"],
-			["r", "sensor %m.d2d3 pressed?", "getbool", "Digital2"],
+			["b", "sensor %m.d2d3 pressed?", "getbool", "Digital2"],
 			[" ", "digital %d.digitalOutPin on", "OutPinOn", "13"],
 			[" ", "digital %d.digitalOutPin off", "OutPinOff", "13"],
 			[" ", "analog %d.analogOutPin value %n", "analogOutPin", "9", 255],
