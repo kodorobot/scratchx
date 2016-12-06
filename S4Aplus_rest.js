@@ -62,7 +62,7 @@
 	ext.getbool = function(pin){
 		var pin = "getbool/" + pin;
 		var value = sensor_data[pin];
-		if(value) return true;
+		if(value == "true") return true;
 		else return false;
 	}
 	
