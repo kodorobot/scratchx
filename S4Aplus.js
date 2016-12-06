@@ -56,14 +56,13 @@
 	}
 	
 	ext.getbool = function(pin){
-		var pin = "getbool/" + pin;
+		//var pin = "getbool/" + pin;
 		var value = sensor_data[pin];
-        console.log(sensor_data);
 		return value;
 	}
 	
 	ext.getvalue = function(pin){
-		var pin = "getvalue/" + pin;
+		//var pin = "getvalue/" + pin;
 		var value = sensor_data[pin];
 		return value;
 	}
