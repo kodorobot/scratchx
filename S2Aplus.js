@@ -38,8 +38,6 @@
         else if(mode == "輸出") mode = "%E8%BC%B8%E5%87%BA";
         else if(mode == "伺服機") mode = "%E4%BC%BA%E6%9C%8D%E6%A9%9F";
         else if(mode == "音調") mode = "%E9%9F%B3%E8%AA%BF";
-        else if(mode == "輸入(pull-up)") mode = "pull-up";
-        else if(mode == "輸入(pull-down)") mode = "pull-down";
 
         send("/digital_pin_mode/" + able + "/" + pin + "/" + mode);
 	}
@@ -47,10 +45,6 @@
     ext.analog_pin_mode = function (able, pin){
         if(able == "啟用") able = "%E5%95%9F%E7%94%A8";
         else if(able == "停用") able = "%E5%81%9C%E7%94%A8";
-        
-        if(mode == "輸入") mode = "%E8%BC%B8%E5%85%A5";
-        else if(mode == "輸入(pull-up)") mode = "pull-up";
-        else if(mode == "輸入(pull-down)") mode = "pull-down";
 		
         send("/analog_pin_mode/" + able + "/" + pin);
 		
@@ -178,7 +172,7 @@
         blocks: [
             [' ', '連接 Transformer', 'connect'],
             [" ", "%m.pin_state : 數位腳位 %n 為 %m.digital_pin_mode", "digital_pin_mode", "啟用", "號碼", "輸入"],
-            [" ", "%m.pin_state : 類比腳位(A) %n 為 %m.analog_pin_mode", "analog_pin_mode", "啟用", "號碼", "輸入"],
+            [" ", "%m.pin_state : 類比腳位(A) %n 為 輸入", "analog_pin_mode", "啟用", "號碼"],
             ["", "數位輸出: 設定腳位 %n 為 %d.high_low", "digital_write", "號碼", 0],
             ["", "模擬類比輸出(PWM): 設定腳位 %n 的值為  %n", "analog_write", "號碼", "數量值"],
             ["", "在腳位 %n 播放音調, 頻率為: %n Hz, 時間為: %n ms", "play_tone", "號碼", 1000, 500],
@@ -202,8 +196,7 @@
 		],
         menus: {
             pin_state: ['啟用', '停用'],
-            digital_pin_mode: ['輸入',"輸入(pull-up)","輸入(pull-down)", '輸出', 'PWM', '伺服機', '音調'],
-            analog_pin_mode: ["輸入", "輸入(pull-up)", "輸入(pull-down)"],
+            digital_pin_mode: ['輸入', '輸出', 'PWM', '伺服機', '音調'],
             high_low: ["0", "1"],
             speed : [-5,-4,-3,-2,-1,0,1,2,3,4,5],
             volume : [0,10,20,30,40,50,60,70,80,90,100]
