@@ -85,6 +85,7 @@
     ext.analog_read = function(pin){
         var pin = "analog_read/" + pin;
         var value = sensor_data[pin];
+        console.log(sensor_data);
         return value;
 	}
 	
