@@ -268,7 +268,7 @@
     }
     
     ext.fbchat_get_message = function(account, pass){
-        send("/appenddata/" + account + "/" + pass);
+        send("/fbchat_get_message/" + account + "/" + pass);
     }
     
     ext.humidity_dht11 = function(){

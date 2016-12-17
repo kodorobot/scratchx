@@ -240,10 +240,6 @@
         send("/ifttt_maker/" + eventname + "/" + key + "/" + value1 + "/" + value2 + "/" + value3);
     }
     
-    ext.ifttt_maker = function(eventname, key, value1, value2, value3){
-        send("/ifttt_maker/" + eventname + "/" + key + "/" + value1 + "/" + value2 + "/" + value3);
-    }
-    
     ext.fbchat_status = function(){
         return sensor_data["fbchat_status"];
     }
@@ -268,7 +264,7 @@
     }
     
     ext.fbchat_get_message = function(account, pass){
-        send("/appenddata/" + account + "/" + pass);
+        send("/fbchat_get_message/" + account + "/" + pass);
     }
     
     ext.humidity_dht11 = function(){
