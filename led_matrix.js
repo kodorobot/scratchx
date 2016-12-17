@@ -128,6 +128,10 @@
         send("/matrix_print_hex/" + value);
 	}
     
+    ext.matrix_print_dec = function(value){
+        send("/matrix_print_dec/" + value);
+	}
+    
     ext.matrix_shift_out = function(value){
         send("/matrix_shift_out/" + value);
     }
@@ -221,6 +225,7 @@
             [" ", "顯示文字(英,數): %s", "matrix_print", ""],
             [" ", "跑馬燈(英,數): %s 延遲: %n (ms)", "matrix_print_scroll", "", 100],
             [" ", "顯示圖形(16位元碼) %s", "matrix_print_hex", ""],
+            [" ", "顯示圖形(10位元碼) %s", "matrix_print_dec", ""],
             [" ", "雙位元組傳送 %s", "matrix_shift_out", ""],
             [" ", "清空文字", "matrix_clear"],
             [" ", "左移 模式: %m.shift_type %s", "matrix_scrollDisplayLeft", "預設"],
