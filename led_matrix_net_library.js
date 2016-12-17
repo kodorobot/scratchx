@@ -123,6 +123,14 @@
     ext.matrix_print_scroll = function(value, delay){
         send("/matrix_print_scroll/" + value + "/" + delay);
 	}
+    
+    ext.matrix_print_hex = function(value){
+        send("/matrix_print_hex/" + value);
+	}
+    
+    ext.matrix_print_dec = function(value){
+        send("/matrix_print_dec/" + value);
+	}
 		
     ext.value_convert = function(value, data){
         send("/value_convert/" + value + "/" + data);
@@ -283,6 +291,37 @@
         url = replaceAll(url,"?","%3F")
         send("/openBrowser/" + url);
     }
+    
+    ext.ifttt_maker = function(eventname, key, value1, value2, value3){
+        send("/ifttt_maker/" + eventname + "/" + key + "/" + value1 + "/" + value2 + "/" + value3);
+    }
+    
+    ext.fbchat_status = function(){
+        return sensor_data["fbchat_status"];
+    }
+    
+    ext.fbchat_message = function(){
+        return sensor_data["fbchat_message"];
+    }
+    
+    ext.fbchat_login = function(account, pass){
+        send("/fbchat_login/" + account + "/" + pass);
+    }
+    
+    ext.fbchat_send_word = function(account, pass){
+        send("/fbchat_send_word/" + account + "/" + pass);
+    }
+    
+    ext.fbchat_send_pic = function(account, url, word){
+        url = replaceAll(url,"/","%2F")
+        url = replaceAll(url,"&","%26")
+        url = replaceAll(url,"?","%3F")
+        send("/fbchat_send_pic/" + account + "/" + url + "/" + word);
+    }
+    
+    ext.fbchat_get_message = function(account, pass){
+        send("/appenddata/" + account + "/" + pass);
+    }
         
     ext.humidity_dht11 = function(){
         return sensor_data["humidity_dht11"];
@@ -366,6 +405,7 @@
             [" ", "顯示文字(英,數): %s", "matrix_print", ""],
             [" ", "跑馬燈(英,數): %s 延遲: %n (ms)", "matrix_print_scroll", "", 100],
             [" ", "顯示圖形(16位元碼) %s", "matrix_print_hex", ""],
+            [" ", "顯示圖形(10位元碼) %s", "matrix_print_dec", ""],
             [" ", "雙位元組傳送 %s", "matrix_shift_out", ""],
             [" ", "清空文字", "matrix_clear"],
             [" ", "左移 模式: %m.shift_type %s", "matrix_scrollDisplayLeft", "預設"],
@@ -401,6 +441,13 @@
             [" ", "選擇 第 %n 筆到第 %n 筆的剖析資料", "jsonDataSelect_section", "1", "10"],
             [" ", "剖析可使用欄位", "keyFind"],
             [" ", "選擇第 %n 筆欄位", "keySelect", "1"],
+            [" ", "IFTTT傳送事件 事件名: %s key: %s 值1: %s 值2: %s 值3: %s", "ifttt_maker", "event", "key", "", "", ""],
+            ["r", "狀態", "fbchat_status"],
+            ["r", "訊息", "fbchat_message"],
+            [" ", "登入fb 帳號: %s 密碼: %s", "fbchat_login", "帳號", "密碼"],
+            [" ", "向id: %s 傳送訊息: %s", "fbchat_send_word", "id", "訊息"],
+            [" ", "向id: %s 傳送圖片 網址: %s 訊息: %s", "fbchat_send_pic", "id", "網址", "訊息"],
+            [" ", "取得與id: %s 的最後第 %n 筆訊息", "fbchat_get_message", "id", 1],
             ["r", "DHT11 濕度(%)", "humidity_dht11"],
             ["r", "DHT11 溫度(°C)", "temperature_dht11_C"],
             ["r", "DHT11 溫度 類型: %m.type3", "temperature_dht11", "°C"],
