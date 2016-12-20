@@ -109,11 +109,11 @@
 	}
 	
     ext.s0 = function(){
-        return sensor_data["s0"];
+        return replaceAll(sensor_data["s0"], "%25", "%");
 	}
 	
     ext.s1 = function(){
-        return sensor_data["s1"];
+        return replaceAll(sensor_data["s1"], "%25", "%");
 	}
 	
     ext.sensor_update_scratch = function(ip, key, value){
@@ -125,6 +125,10 @@
 	}
 	
     ext.sensor_update = function(key, value){
+        value = replaceAll(value,"/","%2F")
+        value = replaceAll(value,"&","%26")
+        value = replaceAll(value,"?","%3F")
+        value = replaceAll(value,"=","%3D")
         send("/sensor_update/" + "/" + key + "/" + value);
 	}
 	
