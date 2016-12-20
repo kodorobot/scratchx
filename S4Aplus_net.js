@@ -117,6 +117,10 @@
 	}
 	
     ext.sensor_update_scratch = function(ip, key, value){
+        value = replaceAll(value,"/","%2F")
+        value = replaceAll(value,"&","%26")
+        value = replaceAll(value,"?","%3F")
+        value = replaceAll(value,"=","%3D")
         send("/sensor_update_scratch/" + "/" + ip + "/" + key + "/" + value);
 	}
 	
