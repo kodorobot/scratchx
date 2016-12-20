@@ -117,12 +117,12 @@
 	}
 	
     ext.sensor_update_scratch = function(ip, key, value){
-        replace(value)
+        value = replace(value)
         send("/sensor_update_scratch/" + "/" + ip + "/" + key + "/" + value);
 	}
 	
     ext.sensor_update = function(key, value){
-        replace(value)
+        value = replace(value)
         send("/sensor_update/" + "/" + key + "/" + value);
 	}
 	
@@ -154,12 +154,12 @@
 	}
 	
     ext.httpPOST = function(url){
-        replace(url)
+        url = replace(url)
         send("/httpPOST/" + url);
 	}
 	
     ext.httpGET_type = function(type, url){
-        replace(url)
+        url = replace(url)
         send("/httpGET_type/" + type + "/" + url);
 	}
     
@@ -228,12 +228,12 @@
     }
     
     ext.writedata = function(input, value){
-        replace(value)
+        value = replace(value)
         send("/writedata/" + input + "/" + value);
     }
     
     ext.appenddata = function(input, value){
-        replace(value)
+        value = replace(value)
         send("/appenddata/" + input + "/" + value);
     }
     
@@ -242,14 +242,14 @@
     }
     
     ext.openBrowser = function(url){
-        replace(url)
+        url = replace(url)
         send("/openBrowser/" + url);
     }
     
     ext.ifttt_maker = function(eventname, key, value1, value2, value3){
-        replace(value1)
-        replace(value2)
-        replace(value3)
+        value1 = replace(value1)
+        value2 = replace(value2)
+        value3 = replace(value3)
         send("/ifttt_maker/" + eventname + "/" + key + "/" + value1 + "/" + value2 + "/" + value3);
     }
     
@@ -266,13 +266,13 @@
     }
     
     ext.fbchat_send_word = function(account, pass){
-        replace(pass)
+        pass = replace(pass)
         send("/fbchat_send_word/" + account + "/" + pass);
     }
     
     ext.fbchat_send_pic = function(account, url, word){
-        replace(url)
-        replace(word)
+        url = replace(url)
+        word = replace(word)
         send("/fbchat_send_pic/" + account + "/" + url + "/" + word);
     }
     
