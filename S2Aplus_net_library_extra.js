@@ -97,18 +97,20 @@
     }
 	
     ext.s0 = function(){
-        return sensor_data["s0"];
+        return replaceAll(sensor_data["s0"], "%25", "%");
 	}
 	
     ext.s1 = function(){
-        return sensor_data["s1"];
+        return replaceAll(sensor_data["s1"], "%25", "%");
 	}
 	
     ext.sensor_update_scratch = function(ip, key, value){
+        value = replace(value)
         send("/sensor_update_scratch/" + "/" + ip + "/" + key + "/" + value);
 	}
 	
     ext.sensor_update = function(key, value){
+        value = replace(value)
         send("/sensor_update/" + "/" + key + "/" + value);
 	}
 	
@@ -124,11 +126,11 @@
 	}
     
     ext.HTTPvalue_processed = function(){
-        return sensor_data["HTTPvalue_processed"];
+        return replaceAll(sensor_data["HTTPvalue_processed"], "%25", "%");
 	}
     
     ext.HTTPvalue_last = function(){
-        return sensor_data["HTTPvalue_last"];
+        return replaceAll(sensor_data["HTTPvalue_last"], "%25", "%");
 	}
     
     ext.HTTP_allkeyValue = function(){
@@ -140,16 +142,12 @@
 	}
 	
     ext.httpPOST = function(url){
-        url = replaceAll(url,"/","%2F")
-        url = replaceAll(url,"&","%26")
-        url = replaceAll(url,"?","%3F")
+        url = replace(url)
         send("/httpPOST/" + url);
 	}
 	
     ext.httpGET_type = function(type, url){
-        url = replaceAll(url,"/","%2F")
-        url = replaceAll(url,"&","%26")
-        url = replaceAll(url,"?","%3F")
+        url = replace(url)
         send("/httpGET_type/" + type + "/" + url);
 	}
     
@@ -218,22 +216,25 @@
     }
     
     ext.writedata = function(input, value){
+        value = replace(value)
         send("/writedata/" + input + "/" + value);
     }
     
     ext.appenddata = function(input, value){
+        value = replace(value)
         send("/appenddata/" + input + "/" + value);
     }
     
-    ext.open_notepad = function(value){
-        send("/open_notepad/" + value);
+    ext.openBrowser = function(url){
+        url = replace(url)
+        send("/openBrowser/" + url);
     }
     
-    ext.openBrowser = function(url){
-        url = replaceAll(url,"/","%2F")
-        url = replaceAll(url,"&","%26")
-        url = replaceAll(url,"?","%3F")
-        send("/openBrowser/" + url);
+    ext.ifttt_maker = function(eventname, key, value1, value2, value3){
+        value1 = replace(value1)
+        value2 = replace(value2)
+        value3 = replace(value3)
+        send("/ifttt_maker/" + eventname + "/" + key + "/" + value1 + "/" + value2 + "/" + value3);
     }
     
     ext.ifttt_maker = function(eventname, key, value1, value2, value3){
@@ -245,7 +246,7 @@
     }
     
     ext.fbchat_message = function(){
-        return sensor_data["fbchat_message"];
+        return replaceAll(sensor_data["fbchat_message"], "%25", "%");
     }
     
     ext.fbchat_login = function(account, pass){
@@ -253,13 +254,13 @@
     }
     
     ext.fbchat_send_word = function(account, pass){
+        pass = replace(pass)
         send("/fbchat_send_word/" + account + "/" + pass);
     }
     
     ext.fbchat_send_pic = function(account, url, word){
-        url = replaceAll(url,"/","%2F")
-        url = replaceAll(url,"&","%26")
-        url = replaceAll(url,"?","%3F")
+        url = replace(url)
+        word = replace(word)
         send("/fbchat_send_pic/" + account + "/" + url + "/" + word);
     }
     
@@ -458,6 +459,14 @@
             }
         }
         http.send();
+    }
+    
+    function replace(value){
+        value = replaceAll(value,"/","%2F")
+        value = replaceAll(value,"&","%26")
+        value = replaceAll(value,"?","%3F")
+        value = replaceAll(value,"=","%3D")
+        return value;
     }
 	
     function replaceAll(str, find, replace) {
