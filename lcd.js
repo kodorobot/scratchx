@@ -126,19 +126,6 @@
         send("/lcd_scrollDisplayRight/");
 	}
     
-    function replace(value){
-        value = replaceAll(value,"/","%2F")
-        value = replaceAll(value,"&","%26")
-        value = replaceAll(value,"?","%3F")
-        value = replaceAll(value,"=","%3D")
-        return value;
-    }
-    
-    function replaceAll(str, find, replace) {
-        while(str.indexOf(find) >= 0) { str = str.replace(find, replace); }
-    return str;
-	}
-		
     function send(cmd) {
         //connection.send(cmd);
         var http = new XMLHttpRequest();
@@ -165,6 +152,14 @@
             }
         }
         http.send();
+    }
+    
+    function replace(value){
+        value = replaceAll(value,"/","%2F")
+        value = replaceAll(value,"&","%26")
+        value = replaceAll(value,"?","%3F")
+        value = replaceAll(value,"=","%3D")
+        return value;
     }
 	
     function replaceAll(str, find, replace) {
