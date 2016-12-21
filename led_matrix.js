@@ -117,10 +117,12 @@
 	}
     
     ext.matrix_print = function(value){
+        value = replace(value)
         send("/matrix_print/" + value);
 	}
     
     ext.matrix_print_scroll = function(value, delay){
+        value = replace(value)
         send("/matrix_print_scroll/" + value + "/" + delay);
 	}
 		
@@ -200,8 +202,16 @@
         http.send();
     }
 	
+    function replace(value){
+        value = replaceAll(value,"/","%2F")
+        value = replaceAll(value,"&","%26")
+        value = replaceAll(value,"?","%3F")
+        value = replaceAll(value,"=","%3D")
+        return value;
+    }
+	
     function replaceAll(str, find, replace) {
-        while(str.search(find) != -1) str = str.replace(find, replace);
+        while(str.indexOf(find) >= 0) { str = str.replace(find, replace); }
     return str;
 	}
 

@@ -117,10 +117,12 @@
 	}
     
     ext.matrix_print = function(value){
+        value = replace(value)
         send("/matrix_print/" + value);
 	}
     
     ext.matrix_print_scroll = function(value, delay){
+        value = replace(value)
         send("/matrix_print_scroll/" + value + "/" + delay);
 	}
     
