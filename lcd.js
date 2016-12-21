@@ -101,7 +101,6 @@
 	}
     
     ext.lcd_print_cover = function(value, num1, num2){
-        console.log(value)
         value = replace(value)
         send("/lcd_print_cover/" + "/" + value + "/" + num1 + "/" + num2);
 	}
@@ -163,7 +162,7 @@
     }
 	
     function replaceAll(str, find, replace) {
-        while(str.search(find) != -1) str = str.replace(find, replace);
+        while(str.indexOf(find) >= 0) { str = str.replace(find, replace); }
     return str;
 	}
 
