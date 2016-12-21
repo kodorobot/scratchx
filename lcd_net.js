@@ -101,6 +101,7 @@
 	}
     
     ext.lcd_print_cover = function(value, num1, num2){
+        value = replace(value)
         send("/lcd_print_cover/" + "/" + value + "/" + num1 + "/" + num2);
 	}
     

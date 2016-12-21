@@ -101,6 +101,7 @@
 	}
     
     ext.lcd_print_cover = function(value, num1, num2){
+        value = replace(value)
         send("/lcd_print_cover/" + "/" + value + "/" + num1 + "/" + num2);
 	}
     
@@ -122,6 +123,19 @@
     
     ext.lcd_scrollDisplayRight = function(){
         send("/lcd_scrollDisplayRight/");
+	}
+    
+    function replace(value){
+        value = replaceAll(value,"/","%2F")
+        value = replaceAll(value,"&","%26")
+        value = replaceAll(value,"?","%3F")
+        value = replaceAll(value,"=","%3D")
+        return value;
+    }
+    
+    function replaceAll(str, find, replace) {
+        while(str.indexOf(find) >= 0) { str = str.replace(find, replace); }
+    return str;
 	}
 		
     function send(cmd) {
