@@ -391,7 +391,7 @@
             ["b", "按鈕D3", "button3"],
             ["r", "紅外線資料", "IR_data"],
             ["r", "DHT11 濕度(%)", "humidity_dht11"],
-            ["r", "DHT11 溫度(°C)", "temperature_dht11_°C"],
+            ["r", "DHT11 溫度(°C)", "temperature_dht11_C"],
             ["r", "DHT11 溫度 類型: %m.type2", "temperature_dht11", "°C"],
             [" ", "蜂鳴器D5, 頻率為: %d.tone_frequency Hz, 時間為: %n ms","play_tone","C4,262",500],
             [" ", "D7 模式: %m.pin_mode 值: %n", "pin_d7", "輸出", 0],
@@ -463,7 +463,7 @@
         url: 'https://kodorobot.github.io/scratchx/'
   };
 
-    ScratchExtensions.register('LCD1602', descriptor, ext);
+    ScratchExtensions.register('Ywrobot', descriptor, ext);
 
 
 })({});
