@@ -139,7 +139,6 @@
 	}
 	
     ext.sensor_update = function(key, value){
-        value = replace(value)
         send("/sensor_update/" + key + "/" + value);
 	}
 	

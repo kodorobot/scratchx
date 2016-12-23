@@ -129,7 +129,6 @@
 	}
 	
     ext.httpGET_type = function(type, url){
-        url = replace(url)
         send("/httpGET_type/" + type + "/" + url);
 	}
     
