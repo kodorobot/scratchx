@@ -203,6 +203,7 @@
     }
 	
     function replace(value){
+        value = value.toString()
         value = replaceAll(value,"/","%2F")
         value = replaceAll(value,"&","%26")
         value = replaceAll(value,"?","%3F")
