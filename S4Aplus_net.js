@@ -298,6 +298,7 @@
             if (http.readyState == 4) {
                 if (http.responseText.length != 0){
                     if (!isConnected) isConnected = true;
+                    console.log(http.responseText)
                     var sensor = http.responseText.split("\n");
                     for(var i = 0;i < sensor.length;i++) sensor_data[sensor[i].split(" ")[0].toString()] = sensor[i].split(" ")[1];
                 }
