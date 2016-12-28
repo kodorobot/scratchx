@@ -179,11 +179,15 @@
     }
     
     ext.s0 = function(){
-        return replaceAll(sensor_data["s0"], "%25", "%");
+        var temp = replaceAll(sensor_data["s0"], "%25", "%")
+        temp = replaceAll(temp, "%20", " ")
+        return temp;
 	}
 	
     ext.s1 = function(){
-        return replaceAll(sensor_data["s1"], "%25", "%");
+        var temp = replaceAll(sensor_data["s1"], "%25", "%")
+        temp = replaceAll(temp, "%20", " ")
+        return temp;
 	}
 	
     ext.sensor_update_scratch = function(ip, key, value){
@@ -207,11 +211,15 @@
 	}
     
     ext.HTTPvalue_processed = function(){
-        return replaceAll(sensor_data["HTTPvalue_processed"], "%25", "%");
+        var temp = replaceAll(sensor_data["HTTPvalue_processed"], "%25", "%")
+        temp = replaceAll(temp, "%20", " ")
+        return temp;
 	}
     
     ext.HTTPvalue_last = function(){
-        return replaceAll(sensor_data["HTTPvalue_last"], "%25", "%");
+        var temp = replaceAll(sensor_data["HTTPvalue_last"], "%25", "%")
+        temp = replaceAll(temp, "%20", " ")
+        return temp;
 	}
     
     ext.HTTP_allkeyValue = function(){
@@ -327,7 +335,9 @@
     }
     
     ext.fbchat_message = function(){
-        return replaceAll(sensor_data["fbchat_message"], "%25", "%");
+        var temp = replaceAll(sensor_data["fbchat_message"], "%25", "%")
+        temp = replaceAll(temp, "%20", " ")
+        return temp;
     }
     
     ext.fbchat_login = function(account, pass){
