@@ -175,11 +175,11 @@
 	}
     
     ext.voicedata = function(){
-        return decodeURI(sensor_data["voicedata"]);
+        return sensor_data["voicedata"];
 	}
 	
-    ext.record = function(){
-        send("/record");
+    ext.record = function(time){
+        send("/record/" + time);
 	}
 	
     ext.textovoice_tw = function(content){
@@ -190,8 +190,8 @@
         send("/textovoice_en/" + content);
 	}
 	
-    ext.voiceSpeed = function(value){
-        send("/voiceSpeed/" + value);
+    ext.clear_voicedata = function(){
+        send("/clear_voicedata");
 	}
 	
     ext.voiceVolume = function(value){
@@ -374,6 +374,12 @@
             [" ", "send %s value %n", "sensor_update", "temp", 255],
             [" ", "向ip: %s 傳送變數 %s 值 %s", "sensor_update_scratch", "127.0.0.1:50209", "s0", 0],
             [" ", "開啟網頁 %s", "openBrowser", "http://www.kodorobot.com"],
+            ["r", "語音資料", "voicedata"],
+            [" ", "錄音 %n 秒", "record", 3],
+            [" ", "%s 轉語音(中文)", "textovoice_tw", "文字"],
+            [" ", "%s 轉語音(英文)", "textovoice_en", "word"],
+            [" ", "語音音量 %d.volume", "voiceVolume", 100],
+            [" ", "清除語音資料", "clear_voicedata"],
             ["b", "資料庫連接", "HTTPvalue"],
             ["r", "雲端資料", "HTTPvalue_processed"],
             ["r", "最後一筆", "HTTPvalue_last"],
