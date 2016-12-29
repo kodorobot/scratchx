@@ -318,6 +318,22 @@
         send("/IR_receive/" + type + "/" + value);
     }
     
+    ext.tm1637_initial = function(pin, pin2){
+        send("/tm1637_initial/" + pin + "/" + pin2);
+    }
+    
+    ext.tm1637_print = function(value){
+        send("/tm1637_print/" + value);
+    }
+    
+    ext.tm1637_clear = function(){
+        send("/tm1637_clear");
+    }
+    
+    ext.tm1637_Intensity = function(value){
+        send("/tm1637_Intensity/" + value);
+    }
+    
     ext.distance_US_016 = function(){
         return sensor_data["distance_US-016"];
     }
@@ -442,6 +458,70 @@
         send("/stop_293/" + pin);
     }
     
+    ext.value_tilt_sensor = function(){
+        return sensor_data["value_tilt_sensor"];
+    }
+    
+    ext.tilt_sensor = function(value){
+        send("/tilt_sensor/" + value);
+    }
+    
+    ext.value_microswitch = function(){
+        return sensor_data["value_microswitch"];
+    }
+    
+    ext.microswitch = function(value){
+        send("/microswitch/" + value);
+    }
+    
+    ext.value_reed_sensor = function(){
+        return sensor_data["value_reed_sensor"];
+    }
+    
+    ext.reed_sensor = function(value){
+        send("/reed_sensor/" + value);
+    }
+    
+    ext.value_joystick1 = function(){
+        return sensor_data["value_joystick1"];
+    }
+    
+    ext.value_joystick2 = function(){
+        return sensor_data["value_joystick2"];
+    }
+    
+    ext.joystick = function(pin, pin2){
+        send("/joystick/" + pin + "/" + pin2);
+    }
+    
+    ext.value_rain_sensor = function(){
+        return sensor_data["value_rain_sensor"];
+    }
+    
+    ext.rain_sensor = function(value){
+        send("/rain_sensor/" + value);
+    }
+    
+    ext.value_soil_sensor = function(){
+        return sensor_data["value_soil_sensor"];
+    }
+    
+    ext.soil_sensor = function(value){
+        send("/soil_sensor/" + value);
+    }
+    
+    ext.relay_module = function(pin, value){
+        send("/relay_module/" + pin + "/" + value);
+    }
+    
+    ext.value_pir = function(){
+        return sensor_data["value_pir"];
+    }
+    
+    ext.pir = function(value){
+        send("/pir/" + value);
+    }
+    
     function send(cmd) {
         //connection.send(cmd);
         var http = new XMLHttpRequest();
@@ -544,6 +624,10 @@
             ["r", "紅外線資料", "IR_data"],
             [" ", "發射訊號 種類:%m.type2 %s (uno:D3 mega:D11)", "IR_send", "30個以內", ""],
             [" ", "紅外線接收器 種類:%m.type2 秒數:%n (D2)", "IR_receive", "30個以內", 10],
+            [" ", "Tm1637 Din接(D) %n ,CLK接(D) %n ", "tm1637_initial", 2, 3],
+            [" ", "Tm1637 4位數字(16進位): %s", "tm1637_print", ""],
+            [" ", "Tm1637清空文字", "tm1637_clear"],
+            [" ", "Tm1637亮度 %m.intense", "tm1637_Intensity", 1],
             ["r", "US-016 距離", "distance_US_016"],
             [" ", "距離感測器US-016(A) %n", "distance2", 0],
             [" ", "3色LED 藍(D) %n PWM %n 紅(D) %n PWM %n 綠(D) %n PWM %n", "three_color_led", 5, 100, 6, 100, 9, 100],
@@ -575,6 +659,22 @@
             [" ", "馬達正轉 PWMA(B)數位腳位: %n DIRA(B)數位腳位: %n 速度: %n", "back_293", 5, 4, 250],
             [" ", "馬達倒轉 PWMA(B)數位腳位: %n DIRA(B)數位腳位: %n 速度: %n", "forward_293", 5, 4, 250],
             [" ", "馬達停止 PWMA(B)數位腳位: %n ", "stop_293", 5],
+            ["r", "傾斜開關狀態", "value_tilt_sensor"],
+            [" ", "傾斜開關(D) %n", "tilt_sensor", 2],
+            ["r", "碰撞開關狀態", "value_microswitch"],
+            [" ", "碰撞開關(D) %n", "microswitch", 2],
+            ["r", "磁簧開關狀態", "value_reed_sensor"],
+            [" ", "磁簧開關(D) %n", "reed_sensor", 2],
+            ["r", "雙軸搖桿數值1", "value_joystick1"],
+            ["r", "雙軸搖桿數值2", "value_joystick2"],
+            [" ", "雙軸搖桿(A) %n (A) %n", "joystick", 0, 1],
+            ["r", "雨滴感測器數值", "value_rain_sensor"],
+            [" ", "雨滴感測器(A) %n", "rain_sensor", 0],
+            ["r", "土壤感測器數值", "value_soil_sensor"],
+            [" ", "土壤感測器(A) %n", "soil_sensor", 0],
+            [" ", "繼電器(D) %n 數值: %d.high_low ", "relay_module", 2, 0],
+            ["r", "動作感測器狀態", "value_pir"],
+            [" ", "動作感測器(D) %n", "pir", 2],
 		],
         menus: {
             pin_state: ['啟用', '停用'],
@@ -591,6 +691,7 @@
             type3: ["°C", "°F"],
             shiftout_type: ["MSBFIRST", "LSBFIRST"],
             tone_frequency:["C1,33", "D1,37", "E1,41", "F1,44", "G1,49", "A1,55", "B1,62", "C2,65", "D2,73", "E2,82", "F2,87", "G2,98", "A2,110", "B2,123", "C3,131", "D3,147", "E3,165", "F3,175", "G3,196", "A3,220", "B3,247", "C4,262", "D4,294", "E4,330", "F4,349", "G4,392", "A4,440", "B4,494", "C5,523", "D5,587", "E5,659", "F5,698", "G5,784", "A5,880", "B5,988", "C6,1047", "D6,1175", "E6,1319", "F6,1397", "G6,1586", "A6,1760", "B6,1976", "C7,2093", "D7,2349", "E7,2637", "F7,2794", "G7,3136", "A7,3520", "B7,3951", "C8,4186", "D8,4699", "E8,5274", "F8,5588", "G8,6272", "A8,7040", "B8,7902", "C9,8372", "D9,9397", "E9,10548", "F9,11175", "G9,12544", "A9,14080", "B9,15804"],
+            intense: [1,2,3,4,5,6,7,8],
     },
         url: 'https://kodorobot.github.io/scratchx/'
   };
