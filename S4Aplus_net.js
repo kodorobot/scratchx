@@ -260,6 +260,29 @@
         send("/ifttt_maker/" + eventname + "/" + key + "/" + value1 + "/" + value2 + "/" + value3);
     }
     
+    ext.temp_data_firebase = function(){
+        var temp = replaceAll(sensor_data["temp_data_firebase"], "%25", "%")
+        temp = replaceAll(temp, "%20", " ")
+        return temp;
+    }
+    
+    ext.httpGET_firebase = function(account, name){
+        send("/httpGET_firebase/" + account + "/" + name);
+    }
+    
+    ext.httpPOST_firebase = function(account, name){
+        send("/httpPOST_firebase/" + account + "/" + name);
+    }
+    
+    ext.write_temp_data_firebase = function(key, value){
+        value = replace(value)
+        send("/write_temp_data_firebase/" + key + "/" + value);
+    }
+    
+    ext.clear_data_firebase = function(){
+        send("/clear_data_firebase");
+    }
+    
     ext.fbchat_status = function(){
         return sensor_data["fbchat_status"];
     }
@@ -374,6 +397,7 @@
             ["r", "雲端資料筆數", "HTTPvalue_number"],
             ["r", "可使用的欄位", "HTTP_allkeyValue"],
             ["r", "選擇的欄位", "HTTP_keyValue"],
+            ["r", "準備寫入firebase的資料", "temp_data_firebase"],
             [" ", "HTTP POST 資料 %s", "httpPOST", "https://api.thingspeak.com/update?api_key=<api_key>&field1=<value>"],
             [" ", "HTTP GET 資料 類型:%m.type 從 %s", "httpGET_type", "json_thingspeak", "https://thingspeak.com/channels/<channel_ID>/feed.json?results=8000"],
             [" ", "HTTP GET 資料庫:%m.database channel ID: %s", "httpGET_database", "thingspeak", ""],
@@ -382,6 +406,10 @@
             [" ", "剖析可使用欄位", "keyFind"],
             [" ", "選擇第 %n 筆欄位", "keySelect", "1"],
             [" ", "IFTTT傳送事件 事件名: %s key: %s 值1: %s 值2: %s 值3: %s", "ifttt_maker", "event", "key", "", "", ""],
+            [" ", "firebase GET 帳號名: %s 文件名: %s", "httpGET_firebase", "帳號", "文件"],
+            [" ", "firebase POST 帳號名: %s 文件名: %s", "httpPOST_firebase", "帳號", "文件"],
+            [" ", "firebase 寫入資料 欄位: %s 值: %s", "write_temp_data_firebase", "key", "value"],
+            [" ", "firebase 清空寫入資料", "clear_data_firebase"],
             ["r", "狀態", "fbchat_status"],
             ["r", "訊息", "fbchat_message"],
             [" ", "登入fb 帳號: %s 密碼: %s", "fbchat_login", "帳號", "密碼"],
@@ -398,7 +426,7 @@
             bodyPart: ["head", "shoulder", "elbow", "hand"],
             coordinate: ["x", "y", "z"],
             analogOutPin: ["9", "6", "5"],
-            type: ["raw", "json_thingspeak", "json_opendata", "json_google"],
+            type: ["raw", "json_thingspeak", "json_opendata", "json_google", "json_firebase"],
             database: ["thingspeak"],
 
     },
