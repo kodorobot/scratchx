@@ -435,7 +435,7 @@
             [" ", "取得與id: %s 的最後第 %n 筆訊息", "fbchat_get_message", "id", 1]
 		],
         menus: {
-            type: ["raw", "json_thingspeak", "json_opendata", "json_google", "json_firebase"],],
+            type: ["raw", "json_thingspeak", "json_opendata", "json_google", "json_firebase"],
             key: ["field1", "field2"],
             database: ["thingspeak"],
             pin_state: ['啟用', '停用'],

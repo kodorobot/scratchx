@@ -525,7 +525,7 @@
             type2: ["°C", "°F"],
             digital_pin:["2", "3", "7", "8"],
             analog_pin:["0", "1", "2", "3"],
-            type: ["raw", "json_thingspeak", "json_opendata", "json_google", "json_firebase"],],
+            type: ["raw", "json_thingspeak", "json_opendata", "json_google", "json_firebase"],
             database: ["thingspeak"],
     },
         url: 'https://kodorobot.github.io/scratchx/'

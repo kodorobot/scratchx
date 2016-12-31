@@ -384,7 +384,7 @@
         menus: {
             booleanSensor: [ "button pressed", "A connected", "B connected", "C connected", "D connected" ],
             sensor: [ "slider", "light", "sound", "resistance-A", "resistance-B", "resistance-C", "resistance-D" ],
-            type: ["raw", "json_thingspeak", "json_opendata", "json_google", "json_firebase"],],
+            type: ["raw", "json_thingspeak", "json_opendata", "json_google", "json_firebase"],
             key: ["field1", "field2"],
             database: ["thingspeak"],
     },

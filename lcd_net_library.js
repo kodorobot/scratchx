@@ -491,7 +491,7 @@
             [" ", "Tm1637亮度 %m.intense", "tm1637_Intensity", 1],
 		],
         menus: {
-            type: ["raw", "json_thingspeak", "json_opendata", "json_google", "json_firebase"],],
+            type: ["raw", "json_thingspeak", "json_opendata", "json_google", "json_firebase"],
             key: ["field1", "field2"],
             database: ["thingspeak"],
             pin_state: ['啟用', '停用'],
