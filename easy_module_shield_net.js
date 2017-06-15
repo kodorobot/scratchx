@@ -34,14 +34,6 @@
 
     }
 	
-    ext.l293d_dira = function(state, value){
-        send("/l293d_dira/" + state + "/" + value);
-	}
-    
-    ext.l293d_dirb = function(state, value){
-        send("/l293d_dirb/" + state + "/" + value);
-	}
-	
     ext.three_color_led_red = function(value){
         send("/3_color_led_red/" + value);
 	}
@@ -78,45 +70,108 @@
     ext.play_tone = function(frequency, time){
         send("/play_tone/" + frequency + "/" + time);
 	}
+    
+    ext.pin_d7 = function(mode, value){
+        send("/pin_d7/" + mode + "/" + value);
+	}
+    
+    ext.pin_d8 = function(mode, value){
+        send("/pin_d8/" + mode + "/" + value);
+	}
+    
+    ext.pin_a3 = function(mode, value){
+        send("/pin_a3/" + mode + "/" + value);
+	}
+    
+    ext.led_12 = function(value){
+        send("/led_12/" + value);
+	}
+    
+    ext.led_13 = function(value){
+        send("/led_13/" + value);
+	}
 
-    ext.Tracker_Sensor_value1 = function(){
-        return sensor_data["Tracker_Sensor_value1"];
+    ext.Potentiometer = function(){
+        return sensor_data["Potentiometer"];
 	}
     
-    ext.Tracker_Sensor_value2 = function(){
-        return sensor_data["Tracker_Sensor_value2"];
+    ext.Photovaristor = function(){
+        return sensor_data["Photovaristor"];
 	}
     
-    ext.Tracker_Sensor_value3 = function(){
-        return sensor_data["Tracker_Sensor_value3"];
+    ext.LM35 = function(){
+        return sensor_data["LM35"];
 	}
+    
+    ext.button2 = function(){
+        var value = sensor_data["button2"];
+		if(value == "true") return true;
+		else return false;
+	}
+    
+    ext.button3 = function(){
+        var value = sensor_data["button3"];
+		if(value == "true") return true;
+		else return false;
+	}
+    
+    ext.humidity_dht11 = function(){
+        return sensor_data["humidity_dht11"];
+    }
+    
+    ext.temperature_dht11_C = function(){
+        return sensor_data["temperature_dht11_°C"];
+    }
+    
+    ext.temperature_dht11 = function(type){
+        var type = "temperature_dht11/" + type;
+        return sensor_data[type];
+    }
     
     ext.IR_data = function(){
         var temp = sensor_data["IR_data"];
-        
-        if (temp == "ff629d") temp = "up";
-        else if(temp == "ffa857") temp = "down";
-        else if(temp == "ff22dd") temp = "left";
-        else if(temp == "ffc23d") temp = "right";
-        else if(temp == "ff02fd") temp = "OK";
-        else if(temp == "ff42bd") temp = "*";
-        else if(temp == "ff52ad") temp = "#";
-        else if(temp == "ff6897") temp = "1";
-        else if(temp == "ff9867") temp = "2";
-        else if(temp == "ffb04f") temp = "3";
-        else if(temp == "ff30cf") temp = "4";
-        else if(temp == "ff18e7") temp = "5";
-        else if(temp == "ff7a85") temp = "6";
-        else if(temp == "ff10ef") temp = "7";
-        else if(temp == "ff38c7") temp = "8";
-        else if(temp == "ff5aa5") temp = "9";
-        else if(temp == "ff4ab5") temp = "0";
-        
         return temp;
 	}
     
-    ext.distance = function(){
-        return sensor_data["distance"];
+    ext.digital_read = function(pin){
+        var pin = "digital_read/" + pin;
+        var value = sensor_data[pin];
+        return value;
+	}
+	
+    ext.analog_read = function(pin){
+        var pin = "analog_read/" + pin;
+        var value = sensor_data[pin];
+        return value;
+	}
+    
+    ext.lcd_initial = function(){
+        send("/lcd_initial/");
+	}
+    
+    ext.lcd_print_cover = function(value, num1, num2){
+        value = replace(value)
+        send("/lcd_print_cover/" + "/" + value + "/" + num1 + "/" + num2);
+	}
+    
+    ext.back_light_on = function(){
+        send("/back_light_on/");
+	}
+    
+    ext.back_light_off = function(){
+        send("/back_light_off/");
+	}
+    
+    ext.lcd_clear = function(){
+        send("/lcd_clear/");
+	}
+    
+    ext.lcd_scrollDisplayLeft = function(){
+        send("/lcd_scrollDisplayLeft/");
+	}
+    
+    ext.lcd_scrollDisplayRight = function(){
+        send("/lcd_scrollDisplayRight/");
 	}
     
     ext.s0 = function(){
@@ -171,30 +226,6 @@
         return sensor_data["HTTP_keyValue"];
 	}
 	
-    ext.voicedata = function(){
-        return sensor_data["voicedata"];
-	}
-	
-    ext.record = function(time){
-        send("/record/" + time);
-	}
-	
-    ext.textovoice_tw = function(content){
-        send("/textovoice_tw/" + content);
-	}
-	
-    ext.textovoice_en = function(content){
-        send("/textovoice_en/" + content);
-	}
-	
-    ext.clear_voicedata = function(){
-        send("/clear_voicedata");
-	}
-	
-    ext.voiceVolume = function(value){
-        send("/voiceVolume/" + value);
-	}
-    
     ext.httpPOST = function(url){
         url = replace(url)
         send("/httpPOST/" + url);
@@ -227,6 +258,30 @@
     
     ext.keySelect = function(url){
         send("/keySelect/" + url);
+	}
+    
+    ext.voicedata = function(){
+        return sensor_data["voicedata"];
+	}
+	
+    ext.record = function(time){
+        send("/record/" + time);
+	}
+	
+    ext.textovoice_tw = function(content){
+        send("/textovoice_tw/" + content);
+	}
+	
+    ext.textovoice_en = function(content){
+        send("/textovoice_en/" + content);
+	}
+	
+    ext.clear_voicedata = function(){
+        send("/clear_voicedata");
+	}
+	
+    ext.voiceVolume = function(value){
+        send("/voiceVolume/" + value);
 	}
     
     ext.datavalue = function(){
@@ -359,31 +414,46 @@
         value = replaceAll(value,"=","%3D")
         return value;
     }
-    
+	
     function replaceAll(str, find, replace) {
-        while(str.search(find) != -1) str = str.replace(find, replace);
+        while(str.indexOf(find) >= 0) { str = str.replace(find, replace); }
     return str;
 	}
 
     var descriptor = {
         blocks: [
-            ["r", "Tracker sensor A1", "Tracker_Sensor_value1"],
-            ["r", "Tracker sensor A2", "Tracker_Sensor_value2"],
-            ["r", "Tracker sensor A3", "Tracker_Sensor_value3"],
-            ["r", "Ir data", "IR_data"],
-            ["r", "distance", "distance"],
-            [" ", "L293D A side D4 status %m.state speed D5 %n", "l293d_dira", "forward", 0],
-            [" ", "L293D B side D7 status %m.state speed D6 %n", "l293d_dirb", "forward", 0],
+            ["r", "Potentiometer A0", "Potentiometer"],
+            ["r", "Photovaristor A1", "Photovaristor"],
+            ["r", "LM35 A2", "LM35"],
+            ["b", "button D2", "button2"],
+            ["b", "button D3", "button3"],
+            ["r", "button", "IR_data"],
+            ["r", "DHT11 humidity(%)", "humidity_dht11"],
+            ["r", "DHT11 temperature(°C)", "temperature_dht11_°C"],
+            ["r", "DHT11 temperature type: %m.type2", "temperature_dht11", "°C"],
+            [" ", "buzzerD5, frequency: %d.tone_frequency Hz, duration: %n ms","play_tone","C4,262",500],
+            [" ", "D7 mode: %m.pin_mode value: %n", "pin_d7", "output", 0],
+            [" ", "D8 mode: %m.pin_mode value: %n", "pin_d8", "output", 0],
             [" ", "3 color LED red D9 analog output %n", "3_color_led_red", 0],
             [" ", "3 color LED green D10 analog output %n", "3_color_led_green", 0],
             [" ", "3 color LED blue D11 analog output %n", "3_color_led_blue", 0],
             [" ", "3 color LED red D9 digital output %d.high_low", "3_color_led_red2", "0"],
             [" ", "3 color LED green D10 digital output %d.high_low", "3_color_led_green2", "0"],
             [" ", "3 color LED blue D11 digital output %d.high_low", "3_color_led_blue2", "0"],
+            [" ", "red LED D12 digital output %d.high_low", "led_12", "0"],
+            [" ", "blue LED D13 digital output %d.high_low", "led_13", "0"],
+            [" ", "A3 mode: %m.pin_mode_a3 value: %d.high_low", "pin_a3", "input", 0],
             [" ", "Enable ir", "enableIR"],
             [" ", "Disable ir", "disableIR"],
-            [" ", "buzzer A0 frequency: %d.tone_frequency Hz, duration: %n ms", "play_tone", "C4,262", 500],
-            [" ", "HC-SR04 max distance %n cm", "sonar", 300],
+            ["r", "Read Digital Pin %d.digital_pin", "digital_read", "pin"],
+            ["r", "Read Analog Pin (A) %d.analog_pin", "analog_read", "pin"],
+            [" ", "SDA connect to A4,SCL connect to A5", "lcd_initial"],
+            [" ", "string: %s location row: %n column: %n", "lcd_print_cover", "", 1, 1],
+            [" ", "light on", "back_light_on"],
+            [" ", "light off", "back_light_off"],
+            [" ", "clear", "lcd_clear"],
+            [" ", "left shift", "lcd_scrollDisplayLeft"],
+            [" ", "right shift", "lcd_scrollDisplayRight"],
             ["r", "data", "datavalue"],
             ["r", "amount of lines", "datavalue_line"],
             [" ", "read local data from %s", "opendata", "temp.txt"],
@@ -428,18 +498,22 @@
             ["", "To id: %s send message: %s", "fbchat_send_word", "id", "message"],
             ["", "To id: %s send picture url: %s message: %s", "fbchat_send_pic", "id", "url", "message"],
             ["", "Get from id: %s the last %n message", "fbchat_get_message", "id", 1],
+
 		],
         menus: {
+            pin_mode: ["input", "output", "servo"],
             high_low: ["0", "1"],
-            type: ["raw", "json_thingspeak", "json_opendata", "json_google", "json_firebase"],
-            key: ["field1", "field2"],
-            database: ["thingspeak"],
             tone_frequency:["C1,33", "D1,37", "E1,41", "F1,44", "G1,49", "A1,55", "B1,62", "C2,65", "D2,73", "E2,82", "F2,87", "G2,98", "A2,110", "B2,123", "C3,131", "D3,147", "E3,165", "F3,175", "G3,196", "A3,220", "B3,247", "C4,262", "D4,294", "E4,330", "F4,349", "G4,392", "A4,440", "B4,494", "C5,523", "D5,587", "E5,659", "F5,698", "G5,784", "A5,880", "B5,988", "C6,1047", "D6,1175", "E6,1319", "F6,1397", "G6,1586", "A6,1760", "B6,1976", "C7,2093", "D7,2349", "E7,2637", "F7,2794", "G7,3136", "A7,3520", "B7,3951", "C8,4186", "D8,4699", "E8,5274", "F8,5588", "G8,6272", "A8,7040", "B8,7902", "C9,8372", "D9,9397", "E9,10548", "F9,11175", "G9,12544", "A9,14080", "B9,15804"],
+            type2: ["°C", "°F"],
+            digital_pin:["2", "3", "7", "8"],
+            analog_pin:["0", "1", "2", "3"],
+            type: ["raw", "json_thingspeak", "json_opendata", "json_google", "json_firebase"],
+            database: ["thingspeak"],
     },
         url: 'https://kodorobot.github.io/scratchx/'
   };
 
-    ScratchExtensions.register('LCD1602', descriptor, ext);
+    ScratchExtensions.register('Ywrobot', descriptor, ext);
 
 
 })({});
