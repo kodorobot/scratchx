@@ -427,7 +427,7 @@
             ["r", "LM35 A2", "LM35"],
             ["b", "button D2", "button2"],
             ["b", "button D3", "button3"],
-            ["r", "button", "IR_data"],
+            ["r", "IR data", "IR_data"],
             ["r", "DHT11 humidity(%)", "humidity_dht11"],
             ["r", "DHT11 temperature(°C)", "temperature_dht11_°C"],
             ["r", "DHT11 temperature type: %m.type2", "temperature_dht11", "°C"],
