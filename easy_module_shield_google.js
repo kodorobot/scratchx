@@ -182,11 +182,11 @@
     }
     
     ext.sensor_update_scratch = function(ip, key, value){
-        send("/sensor_update_scratch/" + 0 + "/" + ip + "/" + key + "/" + value);
+        send("/sensor_update_scratch/" + ip + "/" + key + "/" + value);
     }
     
     ext.sensor_update = function(key, value){
-        send("/sensor_update/" + 0 + "/" + key + "/" + value);
+        send("/sensor_update/" + key + "/" + value);
     }
     
     ext.HTTPvalue = function(){
