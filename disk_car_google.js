@@ -232,7 +232,7 @@
         url: 'https://kodorobot.github.io/scratchx/'
   };
 
-    ScratchExtensions.register('LCD1602', descriptor, ext);
+    ScratchExtensions.register('disk_car', descriptor, ext);
 
 
 })({});

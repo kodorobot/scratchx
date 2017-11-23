@@ -371,7 +371,7 @@
         url: 'https://kodorobot.github.io/scratchx/'
   };
 
-    ScratchExtensions.register('LCD1602_net_library', descriptor, ext);
+    ScratchExtensions.register('LCD1602', descriptor, ext);
 
 
 })({});
