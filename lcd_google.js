@@ -277,20 +277,22 @@
         http.send();
     }
 	
-    function send_poll() {
-        var http = new XMLHttpRequest();
-        http.open("GET", "http://127.0.0.1:50209/poll", true);
-        http.onreadystatechange = function() {
-            if (http.readyState == 4) {
-                if (http.responseText.length != 0){
-                    if (!isConnected) isConnected = true;
-                    var sensor = http.responseText.split("\n");
-                    for(var i = 0;i < sensor.length;i++) sensor_data[sensor[i].split(" ")[0].toString()] = sensor[i].split(" ")[1];
-                }
-                else isConnected = false;
-            }
-        }
-        http.send();
+    function socketConnection(ip, port) {
+        connection = new WebSocket('ws://' + ip + ':' + port);
+        connection.onopen = function (e) {
+            isConnected = true;
+        };
+        connection.onclose = function (e) {
+            isConnected = false;
+        };
+        connection.onmessage = function (e) {
+            //console.log(e.data);
+            var sensor = e.data.split("\n");
+            for(var i = 0;i < sensor.length;i++) sensor_data[sensor[i].split(" ")[0].toString()] = sensor[i].split(" ")[1];
+        };
+        connection.onerror = function (e) {
+            isConnected = false;
+        };
     }
     
     function replace(value){
