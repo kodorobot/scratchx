@@ -313,6 +313,8 @@
             type2: ["°C", "°F"],
             digital_pin:["2", "3", "7", "8"],
             analog_pin:["0", "1", "2", "3"],
+            speed : [-5,-4,-3,-2,-1,0,1,2,3,4,5],
+            volume : [0,10,20,30,40,50,60,70,80,90,100],
     },
         url: 'https://kodorobot.github.io/scratchx/'
   };
