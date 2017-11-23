@@ -154,15 +154,7 @@
     }
 		
     function send(cmd) {
-        //connection.send(cmd);
-        var http = new XMLHttpRequest();
-        http.open("POST", "http://127.0.0.1:50209" + cmd, true);
-        http.onreadystatechange = function() {
-            if (http.readyState == 4) {
-                console.log(http.responseText);
-            }
-        }
-        http.send();
+        connection.send(cmd);
     }
 	
     function socketConnection(ip, port) {
