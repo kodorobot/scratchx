@@ -16,7 +16,6 @@
 	
     var isConnected = false;
 	var sensor_data = {};
-    var poll_request = setInterval(send_poll, 30);
 
     ext._getStatus = function () {
         if (isConnected) return { status: 2, msg: 'Okay' };
@@ -24,14 +23,11 @@
     };
 	
     ext._shutdown = function() {
-        if (poll_request) {
-          clearInterval(poll_request);
-          poll_request = null;
-        }
   };
   
     ext.connect = function () {
-
+        if (!isConnected)
+            socketConnection("127.0.0.1", 50209);
     }
 	
     ext.digital_pin_mode = function (able, pin, mode) {
@@ -313,6 +309,7 @@
 
     var descriptor = {
         blocks: [
+            [' ', '連接 Transformer', 'connect'],
             [" ", "%m.pin_state : 數位腳位 %d.digital_pin 為 %m.digital_pin_mode", "digital_pin_mode", "啟用", "號碼", "輸入"],
             [" ", "%m.pin_state : 類比腳位(A) %d.analog_pin 為 %m.analog_pin_mode", "analog_pin_mode", "啟用", "號碼", "輸入"],
             ["", "數位輸出: 設定腳位 %d.digital_pin 為 %d.high_low", "digital_write", "號碼", 0],

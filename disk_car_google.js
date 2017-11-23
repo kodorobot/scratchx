@@ -16,7 +16,6 @@
 	
     var isConnected = false;
 	var sensor_data = {};
-    var poll_request = setInterval(send_poll, 30);
 
     ext._getStatus = function () {
         if (isConnected) return { status: 2, msg: 'Okay' };
@@ -24,14 +23,11 @@
     };
 	
     ext._shutdown = function() {
-        if (poll_request) {
-          clearInterval(poll_request);
-          poll_request = null;
-        }
   };
   
     ext.connect = function () {
-
+        if (!isConnected)
+            socketConnection("127.0.0.1", 50209);
     }
 	
     ext.l293d_dira = function(state, value){
@@ -201,6 +197,7 @@
 
     var descriptor = {
         blocks: [
+            [' ', '連接 Transformer', 'connect'],
             ["r", "循跡感測器A1", "Tracker_Sensor_value1"],
             ["r", "循跡感測器A2", "Tracker_Sensor_value2"],
             ["r", "循跡感測器A3", "Tracker_Sensor_value3"],

@@ -16,7 +16,6 @@
 	
     var isConnected = false;
 	var sensor_data = {};
-    var poll_request = setInterval(send_poll, 30);
 
     ext._getStatus = function () {
         if (isConnected) return { status: 2, msg: 'Okay' };
@@ -24,14 +23,11 @@
     };
 	
     ext._shutdown = function() {
-        if (poll_request) {
-          clearInterval(poll_request);
-          poll_request = null;
-        }
   };
   
     ext.connect = function () {
-
+        if (!isConnected)
+            socketConnection("127.0.0.1", 50209);
     }
 	
     ext.three_color_led_red = function(value){
@@ -275,6 +271,7 @@
 
     var descriptor = {
         blocks: [
+            [' ', '連接 Transformer', 'connect'],
             ["r", "電位器A0", "Potentiometer"],
             ["r", "光敏電阻A1", "Photovaristor"],
             ["r", "LM35 A2", "LM35"],
