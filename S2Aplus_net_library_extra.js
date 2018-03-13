@@ -108,6 +108,13 @@
         return temp;
 	}
 	
+    ext.synchronous_key = function(){
+        var temp = sensor_data["synchronous_key"];
+        temp = replaceAll(temp, "%20", " ")
+        temp = replaceAll(temp, "%2F", "/")
+        return temp;
+	}
+    
     ext.sensor_update_scratch = function(ip, key, value){
         value = replace(value)
         send("/sensor_update_scratch/" + ip + "/" + key + "/" + value);
@@ -115,6 +122,15 @@
 	
     ext.sensor_update = function(key, value){
         send("/sensor_update/" + key + "/" + value);
+	}
+    
+    ext.sensor_synchronous = function(ip, value){
+        value = replace(value)
+        send("/sensor_update/" + ip + "/" + value);
+	}
+    
+    ext.clear_synchronous = function(){
+        send("/clear_synchronous");
 	}
 	
     ext.HTTPvalue = function(){
@@ -313,6 +329,10 @@
         send("/dht11/" + value);
     }
     
+    ext.dht22 = function(value){
+        send("/dht22/" + value);
+    }
+    
     ext.distance_HC_SR04 = function(){
         return sensor_data["distance_HC-SR04"];
     }
@@ -329,12 +349,16 @@
         return sensor_data["IR_data"];
     }
     
+    ext.IR_hex_data = function(){
+        return sensor_data["IR_hex_data"];
+    }
+    
     ext.IR_send = function(type, value){
         send("/IR_send/" + type + "/" + value);
     }
     
-    ext.IR_receive = function(type, value){
-        send("/IR_receive/" + type + "/" + value);
+    ext.IR_receive = function(value){
+        send("/IR_receive/" + value);
     }
     
     ext.tm1637_initial = function(pin, pin2){
@@ -604,8 +628,11 @@
             [" ", "open notepad %s", "open_notepad", "temp.txt"],
             ["r", "virtual sensor s0",  "s0"],
             ["r", "virtual sensor s1",  "s1"],
-            [" ", "send %s value %n", "sensor_update", "temp", 255],
+            ["r", "synchronous device",  "synchronous_key"],
+            [" ", "send %s value %s", "sensor_update", "s0", "255"],
             [" ", "To ip: %s send %s value %s", "sensor_update_scratch", "127.0.0.1:50209", "s0", 0],
+            [" ", "synchronous ip: %s send %s", "sensor_synchronous", "127.0.0.1:50209", "s0"],
+            [" ", "clear synchronous device", "clear_synchronous"],
             [" ", "open browser %s", "openBrowser", "http://www.kodorobot.com"],
             ["r", "voice data", "voicedata"],
             [" ", "record %n second(s)", "record", 3],
@@ -639,16 +666,18 @@
             ["", "To id: %s send message: %s", "fbchat_send_word", "id", "message"],
             ["", "To id: %s send picture url: %s message: %s", "fbchat_send_pic", "id", "url", "message"],
             ["", "Get from id: %s the last %n message", "fbchat_get_message", "id", 1],
-            ["r", "DHT11 humidity(%)", "humidity_dht11"],
-            ["r", "DHT11 temperature(°C)", "temperature_dht11_°C"],
-            ["r", "DHT11 temperature type: %m.type3", "temperature_dht11", "°C"],
+            ["r", "DHT humidity(%)", "humidity_dht11"],
+            ["r", "DHT temperature(°C)", "temperature_dht11_°C"],
+            ["r", "DHT temperature type: %m.type3", "temperature_dht11", "°C"],
             [" ", "DHT11 (D) %n", "dht11", 2],
+            [" ", "DHT22 (D) %n", "dht22", 2],
             ["r", "HC-SR04 distance", "distance_HC-SR04"],
             ["r", "duration(microsecond)", "time_HC-SR04"],
             [" ", "HC-SR04 trig %n echo %n max distance %n cm", "distance", 10, 11, 300],
             ["r", "ir data", "IR_data"],
+            ["r", "ir data(hex)", "IR_hex_data"],
             [" ", "emission type:%m.type2 %s (uno:D3 mega:D11)", "IR_send", "within 30 signals", ""],
-            [" ", "receive type:%m.type2 duration:%n (D2)", "IR_receive", "within 30 signals", 10],
+            [" ", "receive duration:%n (D2)", "IR_receive", 10],
             [" ", "Tm1637 Din connect to (D) %n ,CLK connect to (D) %n ", "tm1637_initial", 2, 3],
             [" ", "Tm1637 four numbers(hex): %s", "tm1637_print", ""],
             [" ", "Tm1637 clear number", "tm1637_clear"],

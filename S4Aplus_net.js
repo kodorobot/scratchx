@@ -119,6 +119,13 @@
         temp = replaceAll(temp, "%20", " ")
         return temp;
 	}
+    
+    ext.synchronous_key = function(){
+        var temp = sensor_data["synchronous_key"];
+        temp = replaceAll(temp, "%20", " ")
+        temp = replaceAll(temp, "%2F", "/")
+        return temp;
+	}
 	
     ext.sensor_update_scratch = function(ip, key, value){
         value = replace(value)
@@ -127,6 +134,15 @@
 	
     ext.sensor_update = function(key, value){
         send("/sensor_update/" + key + "/" + value);
+	}
+    
+    ext.sensor_synchronous = function(ip, value){
+        value = replace(value)
+        send("/sensor_update/" + ip + "/" + value);
+	}
+    
+    ext.clear_synchronous = function(){
+        send("/clear_synchronous");
 	}
 	
     ext.HTTPvalue = function(){
@@ -382,8 +398,11 @@
             [" ", "open notepad %s", "open_notepad", "temp.txt"],
             ["r", "virtual sensor s0",  "s0"],
             ["r", "virtual sensor s1",  "s1"],
-            [" ", "send %s value %n", "sensor_update", "temp", 255],
+            ["r", "synchronous device",  "synchronous_key"],
+            [" ", "send %s value %s", "sensor_update", "s0", "255"],
             [" ", "To ip: %s send %s value %s", "sensor_update_scratch", "127.0.0.1:50209", "s0", 0],
+            [" ", "synchronous ip: %s send %s", "sensor_synchronous", "127.0.0.1:50209", "s0"],
+            [" ", "clear synchronous device", "clear_synchronous"],
             [" ", "open browser %s", "openBrowser", "http://www.kodorobot.com"],
             ["r", "voice data", "voicedata"],
             [" ", "record %n second(s)", "record", 3],
